@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>Crear usuario</h2>
+<div mat-dialog-content> 
+  <!--
+   Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptates nam quas
+  repellendus culpa deleniti error vel id accusamus placeat aut et excepturi,
+  voluptatem harum officia ipsa modi provident mollitia exercitationem. 
+  -->
+
+  <form [formGroup]="userForm">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Nombre</mat-label>
+          <input formControlName="firstname" matInput />
+          <mat-hint>El nombre debe tener al menos 2 caracteres</mat-hint>
+          <mat-error>{{
+            firstnameControl?.errors | formFieldValidationErrors
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Apellido</mat-label>
+          <input formControlName="secondname" matInput />
+          <mat-hint>El apellido debe tener al menos 2 caracteres</mat-hint>
+          <mat-error>{{
+            secondnameControl?.errors | formFieldValidationErrors
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-8">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput />
+          <mat-error>{{
+            userForm.get("email")?.errors | formFieldValidationErrors
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-4">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>curso</mat-label>
+          <mat-select formControlName="course">
+            <mat-option value="Angular">Angular</mat-option>
+            <mat-option value="Base de Datos">Base de Datos</mat-option>
+            <mat-option value="Java">Java</mat-option>
+            <mat-option value="Python">Python</mat-option>
+            <mat-option value="React Js">React Js</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="d-flex justify-content-end" mat-dialog-actions>
+  <button mat-dialog-close mat-button>Cancelar</button>
+  <button (click)="onSave()" mat-button>Guardar</button>
+</div>

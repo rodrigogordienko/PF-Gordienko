@@ -1,0 +1,45 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer [opened]="!isMobile()"
+    #drawer
+    class="example-sidenav"
+    [mode]="isMobile() ? 'over' : 'side'">
+    <mat-list>
+      <a mat-list-item appFontSize20>
+        <mat-icon>home</mat-icon> Inicio
+      </a>
+      <a mat-list-item appFontSize20>
+        <mat-icon>person</mat-icon> Estudiantes
+      </a>
+      <a mat-list-item appFontSize20>
+        <mat-icon>school</mat-icon> Cursos
+      </a>
+      <a mat-list-item appFontSize20>
+        <mat-icon>event</mat-icon> Clases
+      </a>
+    </mat-list>
+
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+
+        <mat-toolbar color="primary">
+            <button  (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <span appFontSize20>Administración CH</span>
+            <span class="example-spacer"></span>
+            <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+              <mat-icon>favorite</mat-icon>
+            </button>
+            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+              <mat-icon>share</mat-icon>
+            </button>
+          </mat-toolbar>
+          
+          <main style="padding: 1rem;">
+          <app-students></app-students>
+          </main>
+
+    </div>
+  
+  </mat-drawer-container>
