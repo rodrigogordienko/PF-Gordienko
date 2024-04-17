@@ -10,11 +10,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { StudentsModule } from './pages/students/students.module';
 import { SharedModule } from '../../shared/shared.module';
+import { AsyncObservablePipeModule } from './pages/async-observable-pipe/async-observable-pipe.module';
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +25,8 @@ import { SharedModule } from '../../shared/shared.module';
     MatIconModule,
     MatButtonModule,
     StudentsModule,
-    SharedModule
+    SharedModule,
+    AsyncObservablePipeModule
   ],
   exports: [
     DashboardComponent

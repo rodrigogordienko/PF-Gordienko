@@ -10,12 +10,29 @@
       <a mat-list-item appFontSize20>
         <mat-icon>person</mat-icon> Estudiantes
       </a>
-      <a mat-list-item appFontSize20>
-        <mat-icon>school</mat-icon> Cursos
-      </a>
+
+      <mat-nav-list>
+        <a mat-list-item appFontSize20>
+          <mat-icon>school</mat-icon> Cursos
+        </a>
+        <mat-list-item *ngFor="let course of courses">
+          <a matLine>{{ course }}</a>
+        </mat-list-item>
+      </mat-nav-list>
+
+      <mat-nav-list>
+        <a mat-list-item appFontSize20>
+          <mat-icon>event</mat-icon> Clases
+        </a>
+        <mat-list-item *ngFor="let nroSala of doubledNumbers">
+          <a matLine>Sala {{ nroSala }}</a>
+        </mat-list-item>
+      </mat-nav-list>
+      <!--
       <a mat-list-item appFontSize20>
         <mat-icon>event</mat-icon> Clases
       </a>
+    -->
     </mat-list>
 
     </mat-drawer>
@@ -34,9 +51,30 @@
             <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
               <mat-icon>share</mat-icon>
             </button>
+            <!-- ANGULAR 16 queda mas claro, con async en 17 abajo-->
+            <div *ngIf="authUserSinPipe">{{ authUserSinPipe?.firstname }}</div>
+            <!-- ANGULAR 17-->
+            <!-- @if (authUser$ | async; as user) {
+            <div>{{ user?.firstName }}</div>
+            } -->
           </mat-toolbar>
           
           <main style="padding: 1rem;">
+            <div>
+              <button (click)="login()" color="primary" mat-flat-button>
+                Iniciar sesion
+              </button>
+              <button (click)="logout()" color="warn" mat-flat-button>
+                Cerrar sesion
+              </button>
+            </div>
+            <!--
+            <hr>
+
+            <async-observable-pipe></async-observable-pipe>
+            <hr>
+            -->
+
           <app-students></app-students>
           </main>
 

@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 
 @Pipe({
-  name: 'formFieldValidationErrors',
+  name: 'formFieldValidationErrors', 
 })
 export class FormFieldValidationErrorsPipe implements PipeTransform {
   transform(
