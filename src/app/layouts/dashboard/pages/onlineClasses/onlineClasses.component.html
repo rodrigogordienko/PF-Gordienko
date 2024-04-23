@@ -1,0 +1,57 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<ng-container *ngIf="!loading">
+
+<div class="d-flex justify-content-end mb-3">
+  <button (click)="openDialog()" mat-button color="primary" appFontSize20>
+    Registrar Clase
+  </button>
+</div>
+
+<table mat-table [dataSource]="classes"  class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef appFontSize20>No.</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="teacher">
+    <th mat-header-cell *matHeaderCellDef appFontSize20>Profesor</th>
+    <td mat-cell *matCellDef="let element">{{ element.teacher }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="course">
+    <th mat-header-cell *matHeaderCellDef appFontSize20>Curso</th>
+    <td mat-cell *matCellDef="let element">{{ element.course }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="hour">
+    <th mat-header-cell *matHeaderCellDef appFontSize20>Hora</th>
+    <td mat-cell *matCellDef="let element">{{ element.hour | hourFormat }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef appFontSize20>Acciones</th>
+    <td mat-cell *matCellDef="let element">
+      
+      <button (click)="openDialog(element)" mat-icon-button color="primary">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <!-- *ngIf="userRoleSession === 'ADMIN'" -->
+      <button (click)="onDeleteClass(element.id)" mat-icon-button color="warn">
+        <mat-icon>delete_forever</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+</ng-container>

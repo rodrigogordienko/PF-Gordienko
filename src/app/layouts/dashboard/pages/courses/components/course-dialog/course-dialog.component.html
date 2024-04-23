@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Crear clase</h2>
+<div mat-dialog-content> 
+  <form [formGroup]="courseForm">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Nombre del curso</mat-label>
+          <input formControlName="name" matInput />
+          <mat-hint>El nombre debe tener al menos 2 caracteres</mat-hint>
+          <mat-error>{{
+            courseControl?.errors | formFieldValidationErrors
+          }}</mat-error>
+        </mat-form-field>
+      
+      </div>
+      <div class="col-6">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Profesor responsable</mat-label>
+          <mat-select formControlName="teacher">
+            <mat-option value="Josué">Josué</mat-option>
+            <mat-option value="Sofía">Sofía</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      <div class="col-8">
+        <!--
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Fecha</mat-label>
+          <input formControlName="startDate" matInput [matDatepicker]="picker" placeholder="Seleccione una fecha">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      -->
+      <label for="fecha">Fecha de Inicio</label>
+      <input type="date" formControlName="startDate" id="fecha">
+
+      </div>
+    
+    </div>
+  </form>
+</div>
+
+<div class="d-flex justify-content-end" mat-dialog-actions>
+  <button mat-dialog-close mat-button>Cancelar</button>
+  <button (click)="onSave()" mat-button>Guardar</button>
+</div>

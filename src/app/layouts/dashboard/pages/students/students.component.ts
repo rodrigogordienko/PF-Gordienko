@@ -3,6 +3,8 @@ import { IStudent } from './models';
 import {MatTable, MatTableModule} from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
+import { StudentsService } from './students.service';
+//import Swal from 'sweetalert2'; 
 
 export interface PeriodicElement {
   name: string;
@@ -10,7 +12,7 @@ export interface PeriodicElement {
   weight: number;
   symbol: string;
 }
-
+/*
 const ELEMENT_DATA: IStudent[] = [
   { id: 1 , firstname: "Cristiano" , secondname: "Ronaldo", email: "cristiano@gmail.com" , createdAt: new Date(), course: "Angular"},
   { id: 2 , firstname: "Lionel" , secondname: "Messi", email: "messi@gmail.com" , createdAt: new Date(), course: "React Js"},
@@ -21,6 +23,7 @@ const ELEMENT_DATA: IStudent[] = [
   { id: 7 , firstname: "Federico" , secondname: "Valverde", email: "valverde@gmail.com" , createdAt: new Date(), course: "Python"},
   { id: 8 , firstname: "Vinicius" , secondname: "Jr", email: "vinicius@gmail.com" , createdAt: new Date(), course: "Angular"},
 ];
+*/
 
 @Component({
   selector: 'app-students',
@@ -28,34 +31,11 @@ const ELEMENT_DATA: IStudent[] = [
   styleUrl: './students.component.scss'
 })
 export class StudentsComponent {
-  /*
-  columns = [
-    {
-      columnDef: 'id',
-      header: 'No.',
-      cell: (element: IStudent) => `${element.id}`,
-    },
-    {
-      columnDef: 'name',
-      header: 'Nombre',
-      cell: (element: IStudent) => `${element.firstname}`,
-    },
-    {
-      columnDef: 'secondname',
-      header: 'Apellido',
-      cell: (element: IStudent) => `${element.secondname}`,
-    },
-    {
-      columnDef: 'email',
-      header: 'Email',
-      cell: (element: IStudent) => `${element.email}`,
-    },
-    {
-      columnDef: 'date',
-      header: 'Fecha de Registro',
-      cell: (element: IStudent) => `${element.createdAt}`,
-    },
-  ];*/
+
+  loading = false;
+
+  students : IStudent[] = [];
+  
   displayedColumns: string[] = [
     'id',
     'fullname',  
@@ -66,11 +46,7 @@ export class StudentsComponent {
     'actions',
   ];
   
- // displayedColumns = this.columns.map(c => c.columnDef);
-
-
-  dataSource = [...ELEMENT_DATA]; 
-  //@ViewChild(MatTable) table: MatTable<IStudent>;
+  //dataSource = [...ELEMENT_DATA]; 
 
     /*
   addData() {
@@ -85,9 +61,28 @@ export class StudentsComponent {
   }
   */
 
-  constructor(private matDialog : MatDialog){
+  constructor(private matDialog : MatDialog, private studentsService: StudentsService){
     
   }
+
+  ngOnInit(): void {
+    this.loading = true;
+    this.studentsService.getUsers().subscribe({
+      next: (students) => {
+        console.log('next: ', students);
+        this.students = students;
+      },
+      error: (err) => {
+        console.log('error: ', err);
+        //Swal.fire('Error', 'Ocurrio un error', 'error');
+      },
+      complete: () => {
+        console.log('complete');
+        this.loading = false;
+      },
+    });
+  }
+
 
   openDialog(editingUser?: IStudent): void {
     this.matDialog
@@ -100,7 +95,7 @@ export class StudentsComponent {
           if (result) {
             if (editingUser) {
               // ACTUALIZAR EL USUARIO EN EL ARRAY
-              this.dataSource = this.dataSource.map((u) =>
+              this.students = this.students.map((u) =>
                 // ... toma todas las propiedades/campos de u, y luego los de result 
               // entonces los que se cambiaron se sobreescriben
                 u.id === editingUser.id ? { ...u, ...result } : u
@@ -109,7 +104,7 @@ export class StudentsComponent {
               // LOGICA DE CREAR EL USUARIO
               result.id = new Date().getTime().toString().substring(0, 3);
               result.createdAt = new Date();
-              this.dataSource = [...this.dataSource, result];
+              this.students = [...this.students, result];
             }
           }
         },
@@ -118,10 +113,8 @@ export class StudentsComponent {
 
   onDeleteUser(id: number): void {
     if (confirm('Esta seguro?')) {
-      this.dataSource = this.dataSource.filter((u) => u.id != id);
+      this.students = this.students.filter((u) => u.id != id);
     }
   }
-
-  // dataSource = students;
 
 }

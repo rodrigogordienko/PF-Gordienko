@@ -12,6 +12,10 @@
     </button>
   </div>
 -->
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<ng-container *ngIf="!loading">
+
 <div class="d-flex justify-content-end mb-3">
   <button (click)="openDialog()" mat-button color="primary" appFontSize20>
     Registrar Estudiante
@@ -35,7 +39,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 -->
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="students"  class="mat-elevation-z8">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
@@ -79,6 +83,11 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef appFontSize20>Acciones</th>
     <td mat-cell *matCellDef="let element">
+
+      <button [routerLink]="element.id" mat-icon-button color="primary">
+        <mat-icon>visibility</mat-icon>
+      </button>
+      
       <button (click)="openDialog(element)" mat-icon-button color="primary">
         <mat-icon>edit</mat-icon>
       </button>
@@ -93,3 +102,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+</ng-container>

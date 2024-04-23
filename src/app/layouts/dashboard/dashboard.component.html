@@ -4,15 +4,15 @@
     class="example-sidenav"
     [mode]="isMobile() ? 'over' : 'side'">
     <mat-list>
-      <a mat-list-item appFontSize20>
+      <a routerLink="home" mat-list-item appFontSize20>
         <mat-icon>home</mat-icon> Inicio
       </a>
-      <a mat-list-item appFontSize20>
+      <a routerLink="students" mat-list-item appFontSize20>
         <mat-icon>person</mat-icon> Estudiantes
       </a>
 
       <mat-nav-list>
-        <a mat-list-item appFontSize20>
+        <a routerLink="courses" mat-list-item appFontSize20>
           <mat-icon>school</mat-icon> Cursos
         </a>
         <mat-list-item *ngFor="let course of courses">
@@ -21,7 +21,7 @@
       </mat-nav-list>
 
       <mat-nav-list>
-        <a mat-list-item appFontSize20>
+        <a routerLink="classes" mat-list-item appFontSize20>
           <mat-icon>event</mat-icon> Clases
         </a>
         <mat-list-item *ngFor="let nroSala of doubledNumbers">
@@ -52,14 +52,14 @@
               <mat-icon>share</mat-icon>
             </button>
             <!-- ANGULAR 16 queda mas claro, con async en 17 abajo-->
-            <div *ngIf="authUserSinPipe">{{ authUserSinPipe?.firstname }}</div>
+            <div *ngIf="authUserSinPipe">{{ authUserSinPipe.firstname  }}</div>
             <!-- ANGULAR 17-->
             <!-- @if (authUser$ | async; as user) {
             <div>{{ user?.firstName }}</div>
             } -->
           </mat-toolbar>
           
-          <main style="padding: 1rem;">
+          <main style="padding: 1rem;"> 
             <div>
               <button (click)="login()" color="primary" mat-flat-button>
                 Iniciar sesion
@@ -74,8 +74,10 @@
             <async-observable-pipe></async-observable-pipe>
             <hr>
             -->
-
+            <!--
           <app-students></app-students>
+            -->
+            <router-outlet />
           </main>
 
     </div>
