@@ -17,7 +17,7 @@ export class InscriptionsService {
   }
 
   getIinscriptionById(id: string): Observable<IInscription | undefined> {
-    return this.httpClient.get<IInscription>(`${environment.baseAPIURL}/inscriptions/${id}`);
+    return this.httpClient.get<IInscription>(`${environment.baseAPIURL}/inscriptions/${id}`); 
   }
 
   createInscription(payload: CreateInscriptionPayload): Observable<IInscription> {
