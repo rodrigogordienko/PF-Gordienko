@@ -1,0 +1,43 @@
+<div *ngIf="course$ | async as course" id="container" [ngClass]="!loading ? 'd-block' : 'd-none'">
+
+  <div class="profile-details">
+    <table>
+      <tr>
+        <th>ID:</th>
+        <td>{{ course?.id }}</td>
+      </tr>
+      <tr>
+        <th>Profesor asignado</th>
+        <td>{{ course?.teacher }}</td>
+      </tr>
+      <tr>
+        <th>Fecha de Inicio:</th>
+        <td>{{ course?.startDate | date:'dd/MM/yyyy' }}</td>
+      </tr>
+      <tr>
+        <th>Cantidad de Horas:</th>
+        <td>{{ course?.hours }}</td>
+      </tr>
+      <tr>
+        <th>Cantidad de Clases:</th>
+        <td>{{ course?.classes }}</td>
+      </tr>
+      <tr>
+        <th>Alumnos Inscritos:</th>
+        <td>
+          <ul>
+            <ng-container *ngIf="inscriptions && inscriptions.length > 0">
+              <li *ngFor="let inscription of inscriptions">
+                {{ getStudentName(inscription.student) }} {{ getStudentSecondName(inscription.student) }}
+              </li>
+            </ng-container>
+            <ng-container *ngIf="!inscriptions || inscriptions.length === 0">
+              <li>No hay alumnos inscritos en este curso.</li>
+            </ng-container>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+

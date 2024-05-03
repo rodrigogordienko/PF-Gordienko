@@ -6,7 +6,7 @@ import { ICourse } from '../../models';
 @Component({
   selector: 'app-course-dialog',
   templateUrl: './course-dialog.component.html',
-  styleUrl: './course-dialog.component.scss'
+  styleUrls: ['./course-dialog.component.scss']
 })
 export class CourseDialogComponent {
   
@@ -18,52 +18,49 @@ export class CourseDialogComponent {
     @Inject(MAT_DIALOG_DATA) private editingCourse?: ICourse
   ) {
     this.courseForm = this.formBuilder.group({
-      teacher: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$'),
-          Validators.maxLength(20),
-          Validators.minLength(2),
-        ],
-      ],
       name: [
-        '',
+        this.editingCourse ? this.editingCourse.name : '',
         [
           Validators.required,
-          Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ0-9 ]+$'),
-          Validators.maxLength(20),
           Validators.minLength(2),
+          Validators.maxLength(20),
         ],
       ],
-      startDate: ['']
+      teacher: [
+        this.editingCourse ? this.editingCourse.teacher : '',
+        [
+          Validators.required,
+          Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ ]+$'),
+          Validators.minLength(2),
+          Validators.maxLength(20),
+        ],
+      ],
+      startDate: [
+        this.editingCourse ? this.editingCourse.startDate : '',
+        Validators.required,
+      ],
+      hours: [
+        this.editingCourse ? this.editingCourse.hours : null,
+        [
+          Validators.required,
+          Validators.min(1),
+        ],
+      ],
+      classes: [
+        this.editingCourse ? this.editingCourse.classes : null,
+        [
+          Validators.required,
+          Validators.min(1),
+        ],
+      ],
     });
-
-    // Para editar el usuario si es que me lo amndan
-    if (editingCourse) {
-      this.courseForm.patchValue(editingCourse);
-    }
   }
-
-  get teacherControl() {
-    return this.courseForm.get('teacher');
-  }
-
-  get courseControl() {
-    return this.courseForm.get('name');
-  }
-
 
   onSave(): void {
     if (this.courseForm.invalid) {
       this.courseForm.markAllAsTouched();
     } else {
-      // SI EL FORM SI ES VALIDO...
       this.matDialogRef.close(this.courseForm.value); 
-      // Al hacer close, el valor del formulario va para quien lo abrio
-      // En nuestro caso, en el OpenDialog() del componente  Student
     } 
   }
-  
-
 }

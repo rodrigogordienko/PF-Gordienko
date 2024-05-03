@@ -8,10 +8,9 @@
           <input formControlName="name" matInput />
           <mat-hint>El nombre debe tener al menos 2 caracteres</mat-hint>
           <mat-error>{{
-            courseControl?.errors | formFieldValidationErrors
+            courseForm.get('name')?.errors | formFieldValidationErrors
           }}</mat-error>
         </mat-form-field>
-      
       </div>
       <div class="col-6">
         <mat-form-field class="w-100 p-2" appearance="fill">
@@ -22,21 +21,28 @@
           </mat-select>
         </mat-form-field>
       </div>
-      
-      <div class="col-8">
-        <!--
+      <div class="col-6">
         <mat-form-field class="w-100 p-2" appearance="fill">
-          <mat-label>Fecha</mat-label>
-          <input formControlName="startDate" matInput [matDatepicker]="picker" placeholder="Seleccione una fecha">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-label>Cantidad de horas</mat-label>
+          <input formControlName="hours" matInput type="number" />
+          <mat-error>{{
+            courseForm.get('hours')?.errors | formFieldValidationErrors
+          }}</mat-error>
         </mat-form-field>
-      -->
-      <label for="fecha">Fecha de Inicio</label>
-      <input type="date" formControlName="startDate" id="fecha">
-
       </div>
-    
+      <div class="col-6">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Cantidad de clases</mat-label>
+          <input formControlName="classes" matInput type="number" />
+          <mat-error>{{
+            courseForm.get('classes')?.errors | formFieldValidationErrors
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-8">
+        <label for="fecha">Fecha de Inicio</label>
+        <input type="date" formControlName="startDate" id="fecha">
+      </div>
     </div>
   </form>
 </div>

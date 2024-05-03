@@ -1,0 +1,48 @@
+ /* profile.component.css */
+
+ #container {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* profile.component.scss */
+  
+  #profile-pic {
+    width: 100px; // Puedes ajustar el valor según tus necesidades
+    height: auto; // Esto mantiene la proporción de aspecto de la imagen
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  
+  #name {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .profile-details table {
+    width: 100%;
+  }
+  
+  .profile-details th {
+    width: 30%;
+    padding: 10px;
+    text-align: left;
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .profile-details td {
+    padding: 10px;
+    text-align: left;
+  }
+  

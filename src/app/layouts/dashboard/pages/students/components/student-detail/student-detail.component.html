@@ -1,45 +1,61 @@
-<mat-spinner *ngIf="loading"></mat-spinner>
-<!--
-<div [ngClass]="!loading ? 'd-block' : 'd-none'">
-  <h1>Detalles del usuario: NOMBRE</h1>
-  <pre>{{ user$ | async | json }}</pre>
-</div>
--->
-
 <div *ngIf="user$ | async as user" id="container" [ngClass]="!loading ? 'd-block' : 'd-none'">
 
-  <div class="profile-header">
-    <img id="profile-pic" src="assets/anonimo.jpg" alt="Foto de Perfil">
-
+    <div class="profile-header">
+      <img id="profile-pic" src="assets/anonimo.jpg" alt="Foto de Perfil">
       <div id="name">{{ user.firstname }} {{ user.secondname }}</div>
-  </div>
-
-  <div class="profile-details">
+    </div>
+  
+    <div class="profile-details">
       <table>
-          <tr>
-              <th>ID:</th>
-              <td>{{ user.id }}</td>
-          </tr>
-          <tr>
-              <th>Nombre:</th>
-              <td>{{ user.firstname }}</td>
-          </tr>
-          <tr>
-              <th>Apellido:</th>
-              <td>{{ user.secondname }}</td>
-          </tr>
-          <tr>
-              <th>Email:</th>
-              <td>{{ user.email }}</td>
-          </tr>
-          <tr>
-              <th>Fecha de Inscripción:</th>
-              <td>{{ user.createdAt | date:'mediumDate' }}</td>
-          </tr>
-          <tr>
-              <th>Curso:</th>
-              <td>{{ user.course }}</td>
-          </tr>
+        <tr>
+          <th>ID:</th>
+          <td>{{ user.id }}</td>
+        </tr>
+        <tr>
+          <th>Nombre:</th>
+          <td>{{ user.firstname }}</td>
+        </tr>
+        <tr>
+          <th>Apellido:</th>
+          <td>{{ user.secondname }}</td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+          <th>Fecha de Inscripción:</th>
+          <td>{{ user.createdAt | date:'mediumDate' }}</td>
+        </tr>
+        <!-- Nueva fila para mostrar la dirección -->
+        <tr>
+          <th>Dirección:</th>
+          <td>{{ user.address }}</td>
+        </tr>
+        <!-- Nueva fila para mostrar el teléfono -->
+        <tr>
+          <th>Teléfono:</th>
+          <td>{{ user.phone }}</td>
+        </tr>
+        <tr>
+          <th>Cursos:</th>
+          <td>
+            <ul>
+              <!-- Utilizamos un conjunto para almacenar los cursos y evitar duplicados -->
+              <ng-container *ngIf="inscriptions && inscriptions.length > 0">
+                <!-- Iteramos sobre los cursos del usuario -->
+                <li *ngFor="let course of inscriptions">
+                  {{ getCourseName(course.course) }}
+                </li>
+              </ng-container>
+              <!-- Si el usuario no tiene cursos, mostramos un mensaje -->
+              <ng-container *ngIf="!inscriptions || inscriptions.length === 0">
+                <li>No hay cursos registrados.</li>
+              </ng-container>
+            </ul>
+          </td>
+        </tr>
       </table>
+    </div>
   </div>
-</div>
+  

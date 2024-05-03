@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CreateInscriptionPayload, IInscription } from './models';
-import { catchError, delay, first, Observable, of, throwError } from 'rxjs';
+import { catchError, delay, first, map, Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment.development';
 
@@ -37,5 +37,32 @@ export class InscriptionsService {
       payload
     );
   }
+
+  getInscriptionsByStudentId(studentId: number): Observable<IInscription[]> {
+    return this.getInscriptions().pipe(
+      map((inscripciones: IInscription[]) => {
+        return inscripciones.filter(inscripcion => inscripcion.student === studentId);
+      }),
+      catchError(error => {
+        // Manejar errores de la petición HTTP aquí si es necesario
+        return throwError(error);
+      })
+    );
+  }
+
+  getInscriptionsByCourseId(courseId: number): Observable<IInscription[]> {
+    console.log("en servicio");
+    console.log(courseId);
+    return this.getInscriptions().pipe(
+      map((inscripciones: IInscription[]) => {
+        return inscripciones.filter(inscription => inscription.course === courseId);
+      }),
+      catchError(error => {
+        // Manejar errores de la petición HTTP aquí si es necesario
+        return throwError(error);
+      })
+    );
+  }
+  
 
 }

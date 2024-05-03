@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IStudent } from '../../models';
@@ -6,20 +6,22 @@ import { IStudent } from '../../models';
 @Component({
   selector: 'app-user-dialog',
   templateUrl: './user-dialog.component.html',
-  styleUrl: './user-dialog.component.scss'
+  styleUrls: ['./user-dialog.component.scss']
 })
-export class UserDialogComponent {
+export class UserDialogComponent implements OnInit {
   
-  userForm: FormGroup;
+  userForm!: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private matDialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) private editingUser?: IStudent
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.userForm = this.formBuilder.group({
       firstname: [
-        '',
+        this.editingUser ? this.editingUser.firstname : '',
         [
           Validators.required,
           Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$'),
@@ -28,7 +30,7 @@ export class UserDialogComponent {
         ],
       ],
       secondname: [
-        '',
+        this.editingUser ? this.editingUser.secondname : '',
         [
           Validators.required,
           Validators.pattern('^[a-zA-ZÁÉÍÓÚáéíóúñÑ]+$'),
@@ -37,19 +39,27 @@ export class UserDialogComponent {
         ],
       ],
       email: [
-        '',
+        this.editingUser ? this.editingUser.email : '',
         [
           Validators.required,
           Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
         ],
       ],
-      course: [[Validators.required]],
+      address: [
+        this.editingUser ? this.editingUser.address : '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+        ],
+      ],
+      phone: [
+        this.editingUser ? this.editingUser.phone : '',
+        [
+          Validators.required,
+          Validators.pattern('[0-9]{7,10}'),
+        ],
+      ],
     });
-
-    // Para editar el usuario si es que me lo amndan
-    if (editingUser) {
-      this.userForm.patchValue(editingUser);
-    }
   }
 
   get firstnameControl() {
@@ -64,12 +74,7 @@ export class UserDialogComponent {
     if (this.userForm.invalid) {
       this.userForm.markAllAsTouched();
     } else {
-      // SI EL FORM SI ES VALIDO...
       this.matDialogRef.close(this.userForm.value); 
-      // Al hacer close, el valor del formulario va para quien lo abrio
-      // En nuestro caso, en el OpenDialog() del componente  Student
     } 
   }
-  
-
 }

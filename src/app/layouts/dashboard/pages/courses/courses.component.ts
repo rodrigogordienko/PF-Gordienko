@@ -22,6 +22,8 @@ export class CoursesComponent {
     'id',  
     'name',
     'teacher',
+    'classes',
+    'hours',
     'startDate',
     'actions',
   ];

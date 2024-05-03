@@ -6,24 +6,6 @@ import { UserDialogComponent } from './components/user-dialog/user-dialog.compon
 import { StudentsService } from './students.service';
 //import Swal from 'sweetalert2'; 
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-/*
-const ELEMENT_DATA: IStudent[] = [
-  { id: 1 , firstname: "Cristiano" , secondname: "Ronaldo", email: "cristiano@gmail.com" , createdAt: new Date(), course: "Angular"},
-  { id: 2 , firstname: "Lionel" , secondname: "Messi", email: "messi@gmail.com" , createdAt: new Date(), course: "React Js"},
-  { id: 3 , firstname: "Luis" , secondname: "Suarez", email: "suarez@gmail.com" , createdAt: new Date(), course: "Python"},
-  { id: 4 , firstname: "Toni" , secondname: "Kroos", email: "kroos@gmail.com" , createdAt: new Date(), course: "Java"},
-  { id: 5 , firstname: "Karim" , secondname: "Benzema", email: "benzema@gmail.com" , createdAt: new Date(), course: "React Js"},
-  { id: 6 , firstname: "Luka" , secondname: "Modric", email: "modric@gmail.com" , createdAt: new Date(), course: "Base de Datos"},
-  { id: 7 , firstname: "Federico" , secondname: "Valverde", email: "valverde@gmail.com" , createdAt: new Date(), course: "Python"},
-  { id: 8 , firstname: "Vinicius" , secondname: "Jr", email: "vinicius@gmail.com" , createdAt: new Date(), course: "Angular"},
-];
-*/
 
 @Component({
   selector: 'app-students',
@@ -42,7 +24,9 @@ export class StudentsComponent {
     'fullname',  
     //'secondname', unimos nombre y apellido con un pipe
     'email',
-    'course',
+    //'course',
+    'address',
+    'phone',
     'createdAt',
     'actions',
   ];

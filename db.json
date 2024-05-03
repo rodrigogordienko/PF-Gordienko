@@ -30,25 +30,33 @@
       "id": "1",
       "teacher": "Josué",
       "name": "Angular",
-      "startDate": "2024-04-04T00:00:00.000Z"
+      "startDate": "2024-04-04T00:00:00.000Z",
+      "hours": 40,
+      "classes": 20
     },
     {
       "id": "2",
       "teacher": "Sofía",
       "name": "React Js",
-      "startDate": "2024-04-18T00:00:00.000Z"
+      "startDate": "2024-04-18T00:00:00.000Z",
+      "hours": 36,
+      "classes": 18
     },
     {
       "id": "3",
       "teacher": "Josué",
       "name": "Python",
-      "startDate": "2024-05-16T00:00:00.000Z"
+      "startDate": "2024-05-16T00:00:00.000Z",
+      "hours": 44,
+      "classes": 22
     },
     {
       "id": "4",
       "teacher": "Sofía",
       "name": "Java",
-      "startDate": "2024-07-17T00:00:00.000Z"
+      "startDate": "2024-07-17T00:00:00.000Z",
+      "hours": 50,
+      "classes": 25
     }
   ],
   "students": [
@@ -58,7 +66,8 @@
       "secondname": "Ronaldo",
       "email": "cristiano@gmail.com",
       "createdAt": "2024-05-02T00:00:00.000Z",
-      "course": "Angular"
+      "phone": "123456789",
+      "address": "Calle Principal 123"
     },
     {
       "id": "2",
@@ -66,7 +75,8 @@
       "secondname": "Messi",
       "email": "messi@gmail.com",
       "createdAt": "2024-05-02T00:00:00.000Z",
-      "course": "React Js"
+      "phone": "987654321",
+      "address": "Avenida Central 456"
     },
     {
       "id": "3",
@@ -74,7 +84,8 @@
       "secondname": "Suarez",
       "email": "suarez@gmail.com",
       "createdAt": "2024-05-02T00:00:00.000Z",
-      "course": "Python"
+      "phone": "654789321",
+      "address": "Plaza Principal 789"
     },
     {
       "id": "4",
@@ -82,7 +93,8 @@
       "secondname": "Kroos",
       "email": "kroos@gmail.com",
       "createdAt": "2024-05-02T00:00:00.000Z",
-      "course": "Java"
+      "phone": "321987654",
+      "address": "Calle Secundaria 101"
     },
     {
       "id": "5",
@@ -90,7 +102,8 @@
       "secondname": "Benzema",
       "email": "benzema@gmail.com",
       "createdAt": "2024-05-02T00:00:00.000Z",
-      "course": "React Js"
+      "phone": "456123789",
+      "address": "Avenida Secundaria 202"
     },
     {
       "id": "6",
@@ -98,15 +111,26 @@
       "secondname": "Modric",
       "email": "modric@gmail.com",
       "createdAt": "2024-05-02T00:00:00.000Z",
-      "course": "Base de Datos"
+      "phone": "789654123",
+      "address": "Calle Terciaria 303"
     },
     {
+      "id": "8",
       "firstname": "Viniciussss",
       "secondname": "Jr",
       "email": "vinicius@gmail.com",
-      "course": "Angular",
       "createdAt": "2024-05-02T00:00:00.000Z",
-      "id": "8"
+      "phone": "159753852",
+      "address": "Avenida Terciaria 404"
+    },
+    {
+      "id": "9",
+      "firstname": "rrr",
+      "secondname": "jfjjfjjf",
+      "email": "rodri@mail.com",
+      "address": "12gh j",
+      "phone": "78125383",
+      "createdAt": "2024-05-03T04:18:44.082Z"
     }
   ],
   "classes": [
@@ -175,6 +199,13 @@
       "hour": "2024-05-03T01:17:37.883Z",
       "user": "1",
       "id": "4"
+    },
+    {
+      "id": "5",
+      "course": "4",
+      "student": "1",
+      "user": "1",
+      "hour": "2024-05-03T04:00:04.011Z"
     }
   ]
 }
