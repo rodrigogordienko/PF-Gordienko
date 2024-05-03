@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IClass } from './models';
+import { CreateClassPayload, IClass } from './models';
 import { catchError, delay, first, Observable, of, throwError } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../../../environments/environment.development';
+/*
 const hora1 = new Date();
 hora1.setHours(20);
 hora1.setMinutes(30);
@@ -27,12 +29,30 @@ const CLASSES_DB: IClass[] = [
   { id: 6 , teacher: "Sofía" , course: "Angular",  hour: hora1},
 
 ];
+*/
 
 @Injectable({
   providedIn: 'root'
 })
 export class OnlineClassesService {
 
+  constructor(private httpClient: HttpClient) {}
+
+  getClasses(): Observable<IClass[]> {
+    return this.httpClient.get<IClass[]>(environment.baseAPIURL + '/classes');
+  }
+
+  getClassById(id: string): Observable<IClass | undefined> {
+    return this.httpClient.get<IClass>(`${environment.baseAPIURL}/classes/${id}`);
+  }
+
+  createClass(payload: CreateClassPayload): Observable<IClass> {
+    return this.httpClient.post<IClass>(
+      `${environment.baseAPIURL}/classes`,
+      payload
+    );
+  }
+  /*
   getClasses(): Observable<IClass[]> {
     return of(CLASSES_DB).pipe(delay(1500));
     // return throwError(() => new Error('Error al cargar los usuarios')).pipe(
@@ -43,4 +63,5 @@ export class OnlineClassesService {
   getClassById(id: number): Observable<IClass | undefined> {
     return of(CLASSES_DB.find((el) => el.id === id)).pipe(delay(1500));
   }
+  */
 }

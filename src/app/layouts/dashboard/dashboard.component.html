@@ -7,27 +7,40 @@
       <a routerLink="home" mat-list-item appFontSize20>
         <mat-icon>home</mat-icon> Inicio
       </a>
-      <a routerLink="students" mat-list-item appFontSize20>
+      <a a
+      *ngIf="(authUser$ | async)?.role === 'ADMIN'"
+      routerLink="students"
+      mat-list-item
+       appFontSize20>
         <mat-icon>person</mat-icon> Estudiantes
       </a>
 
-      <mat-nav-list>
         <a routerLink="courses" mat-list-item appFontSize20>
           <mat-icon>school</mat-icon> Cursos
         </a>
+        <!--
         <mat-list-item *ngFor="let course of courses">
           <a matLine>{{ course }}</a>
         </mat-list-item>
-      </mat-nav-list>
-
-      <mat-nav-list>
+      -->
+        <!--
         <a routerLink="classes" mat-list-item appFontSize20>
           <mat-icon>event</mat-icon> Clases
         </a>
+      -->
+
+        <a routerLink="inscriptions" mat-list-item appFontSize20>
+          <mat-icon>summarize</mat-icon> Inscripciones
+        </a>
+
+        <!--
         <mat-list-item *ngFor="let nroSala of doubledNumbers">
           <a matLine>Sala {{ nroSala }}</a>
         </mat-list-item>
-      </mat-nav-list>
+      -->
+      <a (click)="logout()" mat-list-item>
+        <mat-icon>logout</mat-icon> Cerrar Sesion
+      </a>
       <!--
       <a mat-list-item appFontSize20>
         <mat-icon>event</mat-icon> Clases
@@ -60,6 +73,7 @@
           </mat-toolbar>
           
           <main style="padding: 1rem;"> 
+            <!--
             <div>
               <button (click)="login()" color="primary" mat-flat-button>
                 Iniciar sesion
@@ -68,6 +82,7 @@
                 Cerrar sesion
               </button>
             </div>
+          -->
             <!--
             <hr>
 

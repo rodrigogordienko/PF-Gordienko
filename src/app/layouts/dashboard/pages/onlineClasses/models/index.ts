@@ -6,3 +6,9 @@ export interface IClass {
     course: string;
     hour: Date;
 }
+
+export interface CreateClassPayload {
+    teacher: string | null;
+    course: string | null;
+    hour: Date | null;
+  }

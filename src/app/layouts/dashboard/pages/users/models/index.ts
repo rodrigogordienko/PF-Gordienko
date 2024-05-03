@@ -1,18 +1,18 @@
-import { ICourse } from "../../courses/models";
+export type UserRole = 'ADMIN' | 'TEACHER';
 
-export interface IStudent {
+export interface IUser {
     id: number;
     firstname: string;
     secondname: string;
     email: string;
-    course: string;
+    role: UserRole;
     createdAt: Date;
 }
 
-export interface CreateStudentPayload {
+export interface CreateUserPayload {
     firstName: string | null;
-    lastName: string | null;
+    secondname: string | null;
     email: string | null;
-    course: string | null;
+    role: UserRole | null;
     createdAt: Date | null;
   }

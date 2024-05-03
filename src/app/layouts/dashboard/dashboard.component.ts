@@ -3,6 +3,8 @@ import { Observable, Subscription, map } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { IStudent } from './pages/students/models';
 import { DataService } from '../../core/services/data.service';
+import { IUser } from './pages/users/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,15 +14,15 @@ import { DataService } from '../../core/services/data.service';
 export class DashboardComponent implements OnInit, OnDestroy {
   showFiller = false;
 
-  authUser$: Observable<IStudent | null>;
+  authUser$: Observable<IUser | null>;
 
-  authUserSinPipe: IStudent | null = null;
+  authUserSinPipe: IUser | null = null;
   authUserSubscription?: Subscription;
 
   courses: string[];          // Para promise
   doubledNumbers: number[];   // Observable para map filter
 
-  constructor(private authService: AuthService, private dataService: DataService) {
+  constructor(private authService: AuthService, private dataService: DataService, private router: Router) {
     this.authUser$ = this.authService.authUser$;  //damos valor inicial null
     this.courses = [];
     this.doubledNumbers = []
@@ -57,13 +59,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   
   
   }
-
+  /*
   login(): void {
     this.authService.login();
   }
+  */
 
+  
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['auth']);
   }
 
   isMobile(): boolean {

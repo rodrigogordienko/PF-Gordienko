@@ -1,5 +1,30 @@
 <main style="height: 100vh; background-color: rgb(62, 63, 65)">
-    <button (click)="login()" color="primary" mat-flat-button>
-      Iniciar sesion
-    </button>
-  </main>
+  <div class="d-flex justify-content-center align-items-center h-100">
+    <div class="w-6">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title> Iniciar sesion </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div>
+              <mat-form-field class="w-100">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput />
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="w-100">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" matInput />
+              </mat-form-field>
+            </div>
+            <button type="submit" color="primary" mat-flat-button>
+              Iniciar sesion
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</main>

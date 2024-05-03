@@ -11,6 +11,7 @@ import {MatTable, MatTableModule} from '@angular/material/table';
 import { FormFieldValidationErrorsPipe } from './pipes/form-field-validation-errors.pipe';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatCardModule} from '@angular/material/card';
 
 
 /*
@@ -21,6 +22,7 @@ import { MatListModule } from '@angular/material/list';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { FontSize20Directive } from './directives/font-size20.directive';
 import { HourFormatPipe } from './pipes/hour-format.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { HourFormatPipe } from './pipes/hour-format.pipe';
     MatProgressSpinnerModule,
     HourFormatPipe,
     MatDatepickerModule,
+    MatCardModule,
+    HttpClientModule,
     /*
     ResaltadoDirective,
     RepetirDirective,

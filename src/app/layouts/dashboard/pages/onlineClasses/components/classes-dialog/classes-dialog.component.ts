@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { IClass } from '../../models';
+import { ICourse } from '../../../courses/models';
+import { CoursesService } from '../../../courses/courses.service';
 
 @Component({
   selector: 'app-classes-dialog',
@@ -9,12 +11,15 @@ import { IClass } from '../../models';
   styleUrl: './classes-dialog.component.scss'
 })
 export class ClassesDialogComponent {
+
+  courses: ICourse[] = [];
   
   classForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private matDialogRef: MatDialogRef<ClassesDialogComponent>,
+    private courseService: CoursesService,
     @Inject(MAT_DIALOG_DATA) private editingClass?: IClass
   ) {
     this.classForm = this.formBuilder.group({
@@ -35,6 +40,18 @@ export class ClassesDialogComponent {
     if (editingClass) {
       this.classForm.patchValue(editingClass);
     }
+  }
+
+  ngOnInit(): void {
+    this.loadCourses();
+  }
+
+  loadCourses() {
+    this.courseService.getCourses().subscribe({
+      next: (courses) => {
+        this.courses = courses;
+      },
+    });
   }
 
   get teacherControl() {

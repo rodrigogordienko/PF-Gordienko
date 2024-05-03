@@ -14,6 +14,7 @@ import { CoursesService } from './courses.service';
 export class CoursesComponent {
 
   loading = false;
+  counter = 0;
 
   courses : ICourse[] = [];
   
@@ -35,6 +36,12 @@ export class CoursesComponent {
       next: (courses) => {
         console.log('next: ', courses);
         this.courses = courses;
+        const maxId = courses.reduce((max, course) => {
+          return (course.id > max) ? course.id : max;
+        }, 0);
+  
+        // Asignar el máximo valor de los IDs a counter
+        this.counter = maxId;
       },
       error: (err) => {
         console.log('error: ', err);
@@ -58,6 +65,7 @@ export class CoursesComponent {
         next: (result) => {
           if (result) {
             if (editingCourse) {
+              /*
               // ACTUALIZAR EL USUARIO EN EL ARRAY
               this.courses = this.courses.map((u) =>
                 
@@ -65,19 +73,53 @@ export class CoursesComponent {
               // entonces los que se cambiaron se sobreescriben
                 u.id === editingCourse.id ? { ...u, ...result } : u
               );
+              */
+             // Mantener la fecha original durante la edición
+            //result.createdAt = editingCourse.;
+            // Actualizar el curso en el array local
+            this.courses = this.courses.map((course) =>
+              course.id === editingCourse.id ? { ...course, ...result } : course
+            );
+
+            // Llamar al servicio para actualizar el curso
+            this.courseService.updateCourse(editingCourse.id, result).subscribe({
+              next: (updatedCourse) => {
+                // Actualizar el curso en el array local con los datos actualizados del servidor
+                this.courses = this.courses.map((course) =>
+                  course.id === updatedCourse.id ? updatedCourse : course
+                );
+              },
+              error: (err) => {
+                console.log('Error al actualizar el curso:', err);
+                // Manejar el error según sea necesario
+              }
+            });
             } else {
-              // LOGICA DE CREAR EL USUARIO
-              result.id = new Date().getTime().toString().substring(0, 3);
-              this.courses = [...this.courses, result];
+              // LOGICA DE CREAR EL CURSO
+              this.counter++;
+              result.id = this.counter.toString();
+              this.courseService.createCourse(result).subscribe({
+                next: (cursoCreado) => {
+                  this.courses = [...this.courses, cursoCreado];
+                },
+              });
             }
           }
         },
       });
   }
 
+
   onDeleteCourse(id: number): void {
-    if (confirm('Esta seguro?')) {
-      this.courses = this.courses.filter((u) => u.id != id);
+    if (confirm('¿Está seguro?')) {
+      this.courseService.deleteCourse(id).subscribe({
+        next: () => {
+          this.courses = this.courses.filter((course) => course.id !== id);
+        },
+        error: (err) => {
+          console.error('Error al eliminar el estudiante:', err);
+        }
+      });
     }
   }
 

@@ -4,3 +4,9 @@ export interface ICourse {
     teacher: string;
     startDate: Date;
 }
+
+export interface CreateCoursePayload {
+    name: string| null;
+    teacher: string | null;
+    startDate: Date | null;
+  }

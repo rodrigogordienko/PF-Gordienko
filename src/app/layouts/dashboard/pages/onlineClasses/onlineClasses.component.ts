@@ -78,7 +78,7 @@ export class OnlineClassesComponent {
                 u.id === editingClass.id ? { ...u, ...result } : u
               );
             } else {
-              // LOGICA DE CREAR EL USUARIO
+              // LOGICA DE CREAR LA CALSE
               result.id = new Date().getTime().toString().substring(0, 3);
               const horaSeleccionadaString = result.hour; // Obtener la hora como string
 
@@ -89,8 +89,11 @@ export class OnlineClassesComponent {
               horaSeleccionadaDate.setMinutes(minutes);
               console.log('Hora seleccionada:', horaSeleccionadaDate);
               result.hour = horaSeleccionadaDate;
-              //result.hour = new Date();
-              this.classes = [...this.classes, result];
+              this.onlineClassesService.createClass(result).subscribe({
+                next: (claseCreada) => {
+                  this.classes = [...this.classes, claseCreada];
+                },
+              });
             }
           }
         },

@@ -1,0 +1,180 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "createdAt": "2024-05-02T01:14:53.907Z",
+      "email": "adminmail@mail.com",
+      "firstname": "soyadmin",
+      "secondname": "apellido",
+      "role": "ADMIN"
+    },
+    {
+      "id": "2",
+      "createdAt": "2024-05-02T01:14:53.907Z",
+      "email": "sofia@mail.com",
+      "firstname": "Sofía",
+      "secondname": "L",
+      "role": "TEACHER"
+    },
+    {
+      "id": "3",
+      "createdAt": "2024-05-02T01:14:53.907Z",
+      "email": "josue@mail.com",
+      "firstname": "Josué",
+      "secondname": "B",
+      "role": "TEACHER"
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "teacher": "Josué",
+      "name": "Angular",
+      "startDate": "2024-04-04T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "teacher": "Sofía",
+      "name": "React Js",
+      "startDate": "2024-04-18T00:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "teacher": "Josué",
+      "name": "Python",
+      "startDate": "2024-05-16T00:00:00.000Z"
+    },
+    {
+      "id": "4",
+      "teacher": "Sofía",
+      "name": "Java",
+      "startDate": "2024-07-17T00:00:00.000Z"
+    }
+  ],
+  "students": [
+    {
+      "id": "1",
+      "firstname": "Cristiano",
+      "secondname": "Ronaldo",
+      "email": "cristiano@gmail.com",
+      "createdAt": "2024-05-02T00:00:00.000Z",
+      "course": "Angular"
+    },
+    {
+      "id": "2",
+      "firstname": "Lionel",
+      "secondname": "Messi",
+      "email": "messi@gmail.com",
+      "createdAt": "2024-05-02T00:00:00.000Z",
+      "course": "React Js"
+    },
+    {
+      "id": "3",
+      "firstname": "Luis",
+      "secondname": "Suarez",
+      "email": "suarez@gmail.com",
+      "createdAt": "2024-05-02T00:00:00.000Z",
+      "course": "Python"
+    },
+    {
+      "id": "4",
+      "firstname": "Toni",
+      "secondname": "Kroos",
+      "email": "kroos@gmail.com",
+      "createdAt": "2024-05-02T00:00:00.000Z",
+      "course": "Java"
+    },
+    {
+      "id": "5",
+      "firstname": "Karim",
+      "secondname": "Benzema",
+      "email": "benzema@gmail.com",
+      "createdAt": "2024-05-02T00:00:00.000Z",
+      "course": "React Js"
+    },
+    {
+      "id": "6",
+      "firstname": "Luka",
+      "secondname": "Modric",
+      "email": "modric@gmail.com",
+      "createdAt": "2024-05-02T00:00:00.000Z",
+      "course": "Base de Datos"
+    },
+    {
+      "firstname": "Viniciussss",
+      "secondname": "Jr",
+      "email": "vinicius@gmail.com",
+      "course": "Angular",
+      "createdAt": "2024-05-02T00:00:00.000Z",
+      "id": "8"
+    }
+  ],
+  "classes": [
+    {
+      "id": "1",
+      "teacher": "Josué",
+      "course": "Angular",
+      "hour": "2024-05-02T20:30:00.000Z"
+    },
+    {
+      "id": "2",
+      "teacher": "Sofía",
+      "course": "React Js",
+      "hour": "2024-05-02T19:00:00.000Z"
+    },
+    {
+      "id": "3",
+      "teacher": "Josué",
+      "course": "Python",
+      "hour": "2024-05-02T08:30:00.000Z"
+    },
+    {
+      "id": "4",
+      "teacher": "Sofía",
+      "course": "Java",
+      "hour": "2024-05-02T12:00:00.000Z"
+    },
+    {
+      "id": "5",
+      "teacher": "Josué",
+      "course": "Base de Datos",
+      "hour": "2024-05-02T19:00:00.000Z"
+    },
+    {
+      "id": "6",
+      "teacher": "Sofía",
+      "course": "Angular",
+      "hour": "2024-05-02T20:30:00.000Z"
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": "1",
+      "student": "1",
+      "user": "1",
+      "course": "1",
+      "hour": "2024-05-01T13:00:29.408Z"
+    },
+    {
+      "id": "2",
+      "student": "2",
+      "user": "2",
+      "course": "2",
+      "hour": "2024-05-01T04:01:29.408Z"
+    },
+    {
+      "course": "1",
+      "student": "3",
+      "hour": "2024-05-03T04:01:29.408Z",
+      "user": "3",
+      "id": "3"
+    },
+    {
+      "course": "2",
+      "student": "4",
+      "hour": "2024-05-03T01:17:37.883Z",
+      "user": "1",
+      "id": "4"
+    }
+  ]
+}
