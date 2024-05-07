@@ -39,6 +39,7 @@ export class StudentsService {
   }
 
   createUser(payload: CreateStudentPayload): Observable<IStudent> {
+    console.log('en create user');
     console.log(payload)
     return this.httpClient.post<IStudent>(
       `${environment.baseAPIURL}/students`,

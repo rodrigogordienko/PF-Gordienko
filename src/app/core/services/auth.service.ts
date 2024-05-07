@@ -8,7 +8,7 @@ import { LoginData } from '../../layouts/auth/models';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private MOCK_AUTH_USER: IUser = {
+  private MOCK_AUTH_USER_ADMIN: IUser = {
     id: 1,
     createdAt: new Date(),
     email: 'adminmail@mail.com',
@@ -17,30 +17,51 @@ export class AuthService {
     role: 'ADMIN',
   };
 
+  private MOCK_AUTH_USER_TEACHER: IUser = {
+      id: 2,
+      createdAt: new Date(),
+      email: 'sofia@mail.com',
+      firstname: 'Sofía',
+      secondname: 'L',
+      role: 'TEACHER',
+  };
+
   private _authUser$ = new BehaviorSubject<IUser | null>(null);
   public authUser$ = this._authUser$.asObservable();
 
   constructor(private router: Router) {}
 
   login(data: LoginData): void {
-    if (data.email !== 'admin@mail.com' || data.password !== 'admin') {
-      alert('Correo o password incorrectos');
-    } else {
-      this._authUser$.next(this.MOCK_AUTH_USER);
+    if ((data.email === 'admin@mail.com' && data.password === 'admin') ) {
+      //alert('Correo o password incorrectos');
+      this._authUser$.next(this.MOCK_AUTH_USER_ADMIN);
       localStorage.setItem(
         'accessToken',
-        'fdskfdsjkmngfunudsijfdsioufjsdoifdsyhfds'
+        'fdskfdsjkmngfunudsijfdsioufjsdoifdsyhfda'
       );
-      this.router.navigate(['dashboard', 'students']);
+      this.router.navigate(['dashboard', 'home']);
+    } else if (data.email === 'teacher@mail.com' || data.password === 'teacher'){
+      //alert('Correo o password incorrectos');
+      this._authUser$.next(this.MOCK_AUTH_USER_TEACHER);
+      localStorage.setItem(
+        'accessToken',
+        'fdskfdsjkmngfunudsijfdsioufjsdoifdsyhfdt'
+      );
+      this.router.navigate(['dashboard', 'home']);
+    }else {
+      alert('Correo o password incorrectos');
     }
   }
 
   verifyToken(): boolean {
     const token = localStorage.getItem('accessToken');
-    if (token) {
-      this._authUser$.next(this.MOCK_AUTH_USER);
+    if (token && token === 'fdskfdsjkmngfunudsijfdsioufjsdoifdsyhfda') {
+      this._authUser$.next(this.MOCK_AUTH_USER_ADMIN);
       return true;
-    } else {
+    } else if (token && token === 'fdskfdsjkmngfunudsijfdsioufjsdoifdsyhfdt') {
+      this._authUser$.next(this.MOCK_AUTH_USER_TEACHER);
+      return true;
+    }else {
       return false;
     }
   }

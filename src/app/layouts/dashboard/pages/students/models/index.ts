@@ -12,8 +12,8 @@ export interface IStudent {
 }
 
 export interface CreateStudentPayload {
-    firstName: string | null;
-    lastName: string | null;
+    firstname: string | null;
+    secondname: string | null;
     email: string | null;
     //course: string | null;
     createdAt: Date | null;
