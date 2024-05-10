@@ -10,10 +10,14 @@ password: teacher
 
 # Cargar contenido de la API
 
-Luego de ejecutar:
+## Luego de ejecutar:
 
 $ng serve
 
-Ejecutar en otra consola:
+## Ejecutar en otra consola:
 
 $ json-server db.json --watch
+
+# Ejecutar Pruebas Unitarias
+
+$ ng test
