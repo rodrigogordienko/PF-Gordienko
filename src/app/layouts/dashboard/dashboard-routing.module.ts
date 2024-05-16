@@ -40,6 +40,14 @@ const routes: Routes = [
       import('./pages/inscriptions/inscriptions.module').then((m) => m.InscriptionsModule),
   },
   {
+    path: 'users',
+    data: {
+      title: 'Usuarios',
+    },
+    loadChildren: () =>
+      import('./pages/users/users.module').then((m) => m.UsersModule),
+  },
+  {
     path: '',
     pathMatch: 'full',
     data: { title: 'Inicio' },

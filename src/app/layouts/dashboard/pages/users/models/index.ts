@@ -10,7 +10,7 @@ export interface IUser {
 }
 
 export interface CreateUserPayload {
-    firstName: string | null;
+    firstname: string | null;
     secondname: string | null;
     email: string | null;
     role: UserRole | null;

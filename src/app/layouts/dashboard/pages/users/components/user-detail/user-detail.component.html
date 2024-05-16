@@ -1,0 +1,30 @@
+<div *ngIf="user$ | async as user" id="container" [ngClass]="!loading ? 'd-block' : 'd-none'">
+
+    <div class="profile-header">
+      <img id="profile-pic" src="assets/anonimo.jpg" alt="Foto de Perfil">
+      <div id="name">{{ user.firstname }} {{ user.secondname }}</div>
+    </div>
+  
+    <div class="profile-details">
+      <table>
+        <tr>
+          <th>ID:</th>
+          <td>{{ user.id }}</td>
+        </tr>
+        <tr>
+          <th>Nombre:</th>
+          <td>{{ user.firstname }}</td>
+        </tr>
+        <tr>
+          <th>Apellido:</th>
+          <td>{{ user.secondname }}</td>
+        </tr>
+        <tr>
+          <th>Email:</th>
+          <td>{{ user.email }}</td>
+        </tr>
+        <tr>
+      </table>
+    </div>
+  </div>
+  

@@ -12,9 +12,15 @@ export class InscriptionsService {
 
   constructor(private httpClient: HttpClient) {}
 
+  
   getInscriptions(): Observable<IInscription[]> {
     return this.httpClient.get<IInscription[]>(environment.baseAPIURL + '/inscriptions');
   }
+  /* No pude => revierto
+  getInscriptions(): Observable<IInscription[]> {
+    return this.httpClient.get<IInscription[]>(environment.baseAPIURL + '/inscriptions?_embed=course,student,user');
+  }
+  */
 
   getIinscriptionById(id: string): Observable<IInscription | undefined> {
     return this.httpClient.get<IInscription>(`${environment.baseAPIURL}/inscriptions/${id}`); 
@@ -27,8 +33,8 @@ export class InscriptionsService {
     );
   }
 
-  deleteInscription(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${environment.baseAPIURL}/inscriptions/${id}`);
+  deleteInscriptionById(id: number): Observable<IInscription> {
+    return this.httpClient.delete<IInscription>(`${environment.baseAPIURL}/inscriptions/${id}`);
   }
 
   updateInscription(id: number, payload: CreateInscriptionPayload): Observable<IInscription> {

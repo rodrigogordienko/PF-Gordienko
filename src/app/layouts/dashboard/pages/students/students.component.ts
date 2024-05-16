@@ -50,6 +50,8 @@ export class StudentsComponent implements OnInit {
   }
 
   openDialog(editingStudent?: IStudent): void {
+    this.students$.subscribe(students => {
+      let maxId = students.length > 0 ? Math.max(...students.map(student => Number(student.id))) : 0;
     this.matDialog
       .open(UserDialogComponent, {
         data: editingStudent,
@@ -61,13 +63,15 @@ export class StudentsComponent implements OnInit {
             if (editingStudent) {
               this.store.dispatch(StudentActions.updateStudent({ id: editingStudent.id, payload: result }));
             } else {
-              this.counter++;
-              result.id = this.counter.toString();
+              //this.counter++;
+              //result.id = this.counter.toString();
+              result.id = (maxId + 1).toString();
               this.store.dispatch(StudentActions.createStudent({ payload: result }));
             }
           }
         },
       });
+    }).unsubscribe();
   }
 
   deleteStudentById(id: number): void {

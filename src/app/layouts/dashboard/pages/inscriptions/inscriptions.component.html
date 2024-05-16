@@ -1,6 +1,8 @@
-<mat-spinner *ngIf="loading"></mat-spinner>
+@if (loading$ | async) {
+  <mat-spinner />
+  } @else {
 
-<ng-container *ngIf="!loading">
+<ng-container>
 
 <div class="d-flex justify-content-end mb-3">
   <button (click)="openDialog()" mat-button color="primary" appFontSize20>
@@ -8,7 +10,7 @@
   </button>
 </div>
 
-<table mat-table [dataSource]="inscriptions"  class="mat-elevation-z8">
+<table mat-table [dataSource]="inscriptions$"  class="mat-elevation-z8">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
@@ -60,3 +62,4 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
 </ng-container>
+  }

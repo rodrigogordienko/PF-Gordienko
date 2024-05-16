@@ -68,6 +68,8 @@ export class CoursesComponent {
   }
 
   openDialog(editingCourse?: ICourse): void {
+    this.courses$.subscribe(courses => {
+      let maxId = courses.length > 0 ? Math.max(...courses.map(course => Number(course.id))) : 0;
     this.matDialog
       .open(CourseDialogComponent, {
         data: editingCourse,
@@ -79,13 +81,15 @@ export class CoursesComponent {
             if (editingCourse) {
               this.store.dispatch(CourseActions.updateCourse({ id: editingCourse.id, payload: result }));
             } else {
-              this.counter++;
-              result.id = this.counter.toString();
+              //this.counter++;
+              //result.id = this.counter.toString();
+              result.id = (maxId + 1).toString();
               this.store.dispatch(CourseActions.createCourse({ payload: result }));
             }
           }
         },
       });
+    }).unsubscribe();
   }
 
   deleteCourseById(id: number): void {
