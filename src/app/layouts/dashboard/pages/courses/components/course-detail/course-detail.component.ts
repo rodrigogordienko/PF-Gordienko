@@ -41,7 +41,7 @@ export class CourseDetailComponent {
   }
 
   loadStudents() {
-    this.studentsSerivice.getUsers().subscribe({
+    this.studentsSerivice.getStudents().subscribe({
       next: (students) => {
         this.students = students;
       },

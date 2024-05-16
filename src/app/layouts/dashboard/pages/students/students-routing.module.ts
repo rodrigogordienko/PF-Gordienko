@@ -14,6 +14,9 @@ const routes: Routes = [
   {
     // /dashboard/users/:id
     path: ':id',
+    data: {
+      title: 'Perfil',
+    },
     component: StudentDetailComponent,
   },
 ];

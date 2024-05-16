@@ -25,7 +25,7 @@ export class StudentsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getUsers(): Observable<IStudent[]> {
+  getStudents(): Observable<IStudent[]> {
     //return of(USERS_DB).pipe(delay(1500));
     return this.httpClient.get<IStudent[]>(environment.baseAPIURL + '/students');
     // return throwError(() => new Error('Error al cargar los usuarios')).pipe(
@@ -38,7 +38,7 @@ export class StudentsService {
     return this.httpClient.get<IStudent>(`${environment.baseAPIURL}/students/${id}`);
   }
 
-  createUser(payload: CreateStudentPayload): Observable<IStudent> {
+  createStudent(payload: CreateStudentPayload): Observable<IStudent> {
     console.log('en create user');
     console.log(payload)
     return this.httpClient.post<IStudent>(
@@ -47,8 +47,8 @@ export class StudentsService {
     );
   }
 
-  deleteStudent(id: number): Observable<void> {
-    return this.httpClient.delete<void>(`${environment.baseAPIURL}/students/${id}`);
+  deleteStudentById(id: number): Observable<IStudent> {
+    return this.httpClient.delete<IStudent>(`${environment.baseAPIURL}/students/${id}`);
   }
 
   updateStudent(id: number, payload:  CreateStudentPayload): Observable<IStudent> {

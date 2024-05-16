@@ -13,6 +13,7 @@ import { CoursesService } from '../courses/courses.service';
 import { UsersService } from '../users/users.service';
 import { ICourse } from '../courses/models';
 import { IStudent } from '../students/models';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-inscriptions',
@@ -63,7 +64,7 @@ export class InscriptionsComponent {
   }
 
   loadStudents() {
-    this.studentsService.getUsers().subscribe({
+    this.studentsService.getStudents().subscribe({
       next: (students) => {
         this.students = students;
       },

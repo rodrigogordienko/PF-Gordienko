@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Subscription, map, filter } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { IStudent } from './pages/students/models';
 import { DataService } from '../../core/services/data.service';
 import { IUser } from './pages/users/models';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { authActions } from '../../store/auth/auth.actions';
+import { ActivatedRoute, Data, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,10 +24,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
   courses: string[];          // Para promise
   doubledNumbers: number[];   // Observable para map filter
 
-  constructor(private authService: AuthService, private dataService: DataService, private router: Router) {
+  routeData$: Observable<Data | undefined>;
+
+  constructor(private authService: AuthService, private dataService: DataService, private router: Router,
+    private store: Store,  private route: ActivatedRoute,
+  ) {
+
     this.authUser$ = this.authService.authUser$;  //damos valor inicial null
     this.courses = [];
     this.doubledNumbers = []
+
+    this.routeData$ = router.events.pipe(
+      filter((ev) => ev instanceof NavigationEnd),
+      map(() => route.firstChild?.snapshot.data)
+    );
   }
 
   ngOnDestroy(): void {
@@ -38,6 +50,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.authUserSinPipe = user;
       },
     });
+
+    /* Para entregable, luego no fu necesario usarlo:
 
     // Para usar promesa asincrona de 1 segundo
     this.dataService.getCourses()
@@ -56,8 +70,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .subscribe(doubledNumbers => {
         this.doubledNumbers = doubledNumbers;
       });
-  
-  
+      */
   }
   /*
   login(): void {
@@ -65,9 +78,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
   */
 
-  
   logout(): void {
-    this.authService.logout();
+    //this.authService.logout();
+    this.store.dispatch(
+      authActions.logout()
+    );
     this.router.navigate(['auth']);
   }
 

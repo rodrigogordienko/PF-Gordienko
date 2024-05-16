@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivateFn } from '@angular/router';
-import { OnlineClassesModule } from './pages/onlineClasses/onlineClasses.module';
 import { adminGuard } from '../../core/guards/admin.guard';
 
 const routes: Routes = [
@@ -9,33 +8,41 @@ const routes: Routes = [
    */
   {
     path: 'home',
+    data: {
+      title: 'Inicio',
+    },
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'students',
+    data: {
+      title: 'Estudiantes',
+    },
     canActivate: [adminGuard],
     loadChildren: () =>
       import('./pages/students/students.module').then((m) => m.StudentsModule), 
   },
   {
     path: 'courses',
+    data: {
+      title: 'Cursos',
+    },
     loadChildren: () =>
       import('./pages/courses/courses.module').then((m) => m.CoursesModule),
   },
   {
-    path: 'classes',
-    loadChildren: () =>
-      import('./pages/onlineClasses/onlineClasses.module').then((m) => m.OnlineClassesModule),
-  },
-  {
     path: 'inscriptions',
+    data: {
+      title: 'Inscripciones',
+    },
     loadChildren: () =>
       import('./pages/inscriptions/inscriptions.module').then((m) => m.InscriptionsModule),
   },
   {
     path: '',
     pathMatch: 'full',
+    data: { title: 'Inicio' },
     redirectTo: 'home',
   },
 ];

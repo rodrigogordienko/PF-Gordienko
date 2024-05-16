@@ -10,6 +10,9 @@ const routes: Routes = [
    */
   {
     path: 'dashboard',
+    data: {
+      title: 'Inicio',
+    },
     canActivate : [authGuard],
     component: DashboardComponent,
     loadChildren: () =>
@@ -27,6 +30,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: '/auth',
   },
+  
 ];
 
 @NgModule({

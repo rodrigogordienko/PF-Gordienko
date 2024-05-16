@@ -5,6 +5,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { CourseDialogComponent } from './components/course-dialog/course-dialog.component';
 import { CoursesService } from './courses.service';
 //import Swal from 'sweetalert2'; 
+import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { CourseActions } from './store/course.actions';
+import {
+  selectIsLoading,
+  selectCourses,
+  selectCoursesError,
+  selectCourseState,
+} from './store/course.selectors';
+import { map, Observable } from 'rxjs';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-courses',
@@ -13,11 +25,13 @@ import { CoursesService } from './courses.service';
 })
 export class CoursesComponent {
 
-  loading = false;
+  //loading = false;
   counter = 0;
-
-  courses : ICourse[] = [];
-  
+  //maxId$: Observable<number>;
+  //courses : ICourse[] = []; 
+  courses$: Observable<ICourse[]>;
+  isLoading$: Observable<boolean>;
+  error$: Observable<Error>;
   displayedColumns: string[] = [
     'id',  
     'name',
@@ -28,10 +42,67 @@ export class CoursesComponent {
     'actions',
   ];
 
-  constructor(private matDialog : MatDialog, private courseService: CoursesService){
-    
+  constructor(private matDialog : MatDialog, private courseService: CoursesService, private store: Store){
+    this.isLoading$ = this.store.select(selectIsLoading);
+    this.courses$ = this.store.select(selectCourses);
+    this.error$ = this.store
+      .select(selectCoursesError)
+      .pipe(map((err) => err as Error));
+    /*
+      this.maxId$ = this.courses$.pipe(
+        map(courses => courses.length ? Math.max(...courses.map(course => course.id)) : 0)
+      );
+      */
+      //this.counter = this.maxId$ ;
+      this.counter = 1000;
+
   }
 
+  ngOnInit(): void {
+    this.store.dispatch(CourseActions.loadCourses());
+    /*
+    this.maxId$.subscribe(maxId => {
+      console.log(`Max ID: ${maxId}`);
+    });
+    */
+  }
+
+  openDialog(editingCourse?: ICourse): void {
+    this.matDialog
+      .open(CourseDialogComponent, {
+        data: editingCourse,
+      })
+      .afterClosed()
+      .subscribe({
+        next: (result) => {
+          if (result) {
+            if (editingCourse) {
+              this.store.dispatch(CourseActions.updateCourse({ id: editingCourse.id, payload: result }));
+            } else {
+              this.counter++;
+              result.id = this.counter.toString();
+              this.store.dispatch(CourseActions.createCourse({ payload: result }));
+            }
+          }
+        },
+      });
+  }
+
+  deleteCourseById(id: number): void {
+    Swal.fire({
+      icon: 'question',
+      html: `Esta seguro?`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.store.dispatch(CourseActions.deleteCourseById({ id }));
+      }
+    });
+  }
+
+
+}
+
+  /*
   ngOnInit(): void {
     this.loading = true;
     this.courseService.getCourses().subscribe({
@@ -55,8 +126,9 @@ export class CoursesComponent {
       },
     });
   }
+  */
 
-
+  /*
   openDialog(editingCourse?: ICourse): void {
     this.matDialog
       .open(CourseDialogComponent, {
@@ -79,6 +151,7 @@ export class CoursesComponent {
              // Mantener la fecha original durante la edición
             //result.createdAt = editingCourse.;
             // Actualizar el curso en el array local
+            /*
             this.courses = this.courses.map((course) =>
               course.id === editingCourse.id ? { ...course, ...result } : course
             );
@@ -110,11 +183,13 @@ export class CoursesComponent {
         },
       });
   }
+  */
 
 
+  /*
   onDeleteCourse(id: number): void {
     if (confirm('¿Está seguro?')) {
-      this.courseService.deleteCourse(id).subscribe({
+      this.courseService.deleteCourseById(id).subscribe({
         next: () => {
           this.courses = this.courses.filter((course) => course.id !== id);
         },
@@ -124,5 +199,5 @@ export class CoursesComponent {
       });
     }
   }
+  */
 
-}

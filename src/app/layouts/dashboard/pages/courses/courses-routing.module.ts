@@ -12,6 +12,9 @@ const routes: Routes = [
   {
     // /dashboard/users/:id
     path: ':id',
+    data: {
+      title: 'Detalles del Curso',
+    },
     component: CourseDetailComponent,
   }
   

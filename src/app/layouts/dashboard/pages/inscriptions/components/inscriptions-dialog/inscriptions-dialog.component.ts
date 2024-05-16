@@ -64,7 +64,7 @@ export class InscriptionsDialogComponent {
   }
 
   loadStudents() {
-    this.studentsService.getUsers().subscribe({
+    this.studentsService.getStudents().subscribe({
       next: (students) => {
         this.students = students;
       },

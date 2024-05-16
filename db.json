@@ -43,12 +43,12 @@
       "classes": 18
     },
     {
-      "id": "3",
-      "teacher": "Josué",
       "name": "Python",
+      "teacher": "Josué",
       "startDate": "2024-05-16T00:00:00.000Z",
-      "hours": 44,
-      "classes": 22
+      "hours": 47,
+      "classes": 22,
+      "id": "3"
     },
     {
       "id": "4",
@@ -57,6 +57,22 @@
       "startDate": "2024-07-17T00:00:00.000Z",
       "hours": 50,
       "classes": 25
+    },
+    {
+      "id": "1001",
+      "name": "C#",
+      "teacher": "Josué",
+      "startDate": "2024-06-12",
+      "hours": 88,
+      "classes": 40
+    },
+    {
+      "id": "e3dd",
+      "name": "PruebaId",
+      "teacher": "Sofía",
+      "startDate": "2024-08-15",
+      "hours": 22,
+      "classes": 13
     }
   ],
   "students": [
@@ -133,13 +149,12 @@
       "createdAt": "2024-05-03T04:18:44.082Z"
     },
     {
-      "firstname": "Nuevo",
-      "secondname": "NuevoApaaa",
-      "email": "nuevoo@mail.com",
-      "address": "Calle Montevideo 1456",
-      "phone": "5982143456",
-      "createdAt": "2024-05-07T17:53:59.742Z",
-      "id": "10"
+      "firstname": "fffyyyy",
+      "secondname": "dabcdbshf",
+      "email": "hhdhdhdh@mail.com",
+      "address": "fhhfjfjdj",
+      "phone": "5464785849",
+      "id": "1001"
     }
   ],
   "classes": [
@@ -243,6 +258,13 @@
       "student": "10",
       "user": "2",
       "hour": "2024-05-07T17:55:24.213Z"
+    },
+    {
+      "id": "10",
+      "course": "3",
+      "student": "8",
+      "user": "2",
+      "hour": "2024-05-11T04:08:29.037Z"
     }
   ]
 }
