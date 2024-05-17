@@ -1,3 +1,10 @@
+# NOTA IMPORTANTE: 
+
+Al ejecutar $ ng serve , e intentar loguearme por primera vez, a veces no redirije a "home" 
+como deberia, y en otras veces si. Supongo que es un bug de mi navegador, o la caché de este.
+En dicho caso, se soluciona usando cualquier URL permitida, como: /dashboard/home
+Luego de ellos, si se cierra sesion y se vuelve a intentar ingresar re-dirije siempre de forma correcta.
+
 # Logins
 
 Usario con rol administrador:
