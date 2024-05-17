@@ -10,5 +10,5 @@ export interface CreateInscriptionPayload {
     user: number | null;
     course: number | null;
     student: number | null;
-    //hour: Date | null;
+    hour: Date | null;
   }

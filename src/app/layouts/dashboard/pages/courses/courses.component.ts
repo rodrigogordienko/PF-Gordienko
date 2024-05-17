@@ -27,10 +27,7 @@ import { authUser } from '../../../../store/auth/auth.selectors';
 })
 export class CoursesComponent {
 
-  //loading = false;
   counter = 0;
-  //maxId$: Observable<number>;
-  //courses : ICourse[] = []; 
   courses$: Observable<ICourse[]>;
   isLoading$: Observable<boolean>;
   error$: Observable<Error>;
@@ -51,23 +48,12 @@ export class CoursesComponent {
     this.error$ = this.store
       .select(selectCoursesError)
       .pipe(map((err) => err as Error));
-    /*
-      this.maxId$ = this.courses$.pipe(
-        map(courses => courses.length ? Math.max(...courses.map(course => course.id)) : 0)
-      );
-      */
-      //this.counter = this.maxId$ ;
       this.counter = 1000;
       this.authUser$ = this.store.select(authUser);
   }
 
   ngOnInit(): void {
     this.store.dispatch(CourseActions.loadCourses());
-    /*
-    this.maxId$.subscribe(maxId => {
-      console.log(`Max ID: ${maxId}`);
-    });
-    */
   }
 
   openDialog(editingCourse?: ICourse): void {
@@ -84,8 +70,6 @@ export class CoursesComponent {
             if (editingCourse) {
               this.store.dispatch(CourseActions.updateCourse({ id: editingCourse.id, payload: result }));
             } else {
-              //this.counter++;
-              //result.id = this.counter.toString();
               result.id = (maxId + 1).toString();
               this.store.dispatch(CourseActions.createCourse({ payload: result }));
             }
@@ -105,8 +89,6 @@ export class CoursesComponent {
       }
     });
   }
-
-
 }
 
   /*
@@ -191,8 +173,6 @@ export class CoursesComponent {
       });
   }
   */
-
-
   /*
   onDeleteCourse(id: number): void {
     if (confirm('¿Está seguro?')) {

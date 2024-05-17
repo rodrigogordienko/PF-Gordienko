@@ -1,106 +1,58 @@
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer [opened]="!isMobile()"
-    #drawer
-    class="example-sidenav"
-    [mode]="isMobile() ? 'over' : 'side'">
+  <mat-drawer [opened]="!isMobile()" #drawer class="example-sidenav" [mode]="isMobile() ? 'over' : 'side'">
     <mat-list>
       <a routerLink="home" mat-list-item appFontSize20>
         <mat-icon>home</mat-icon> Inicio
       </a>
       
-      <a  *ngIf="(authUser$ | async)?.role === 'ADMIN'" routerLink="users" mat-list-item appFontSize20>
+      <a *ngIf="(authUser$ | async)?.role === 'ADMIN'" routerLink="users" mat-list-item appFontSize20>
         <mat-icon>groups</mat-icon> Usuarios
       </a>
 
-      <a a
-      routerLink="students"
-      mat-list-item
-       appFontSize20>
+      <a routerLink="students" mat-list-item appFontSize20>
         <mat-icon>person</mat-icon> Estudiantes
       </a>
 
-        <a routerLink="courses" mat-list-item appFontSize20>
-          <mat-icon>school</mat-icon> Cursos
-        </a>
-        <!--
-        <mat-list-item *ngFor="let course of courses">
-          <a matLine>{{ course }}</a>
-        </mat-list-item>
-      -->
-        <!--
-        <a routerLink="classes" mat-list-item appFontSize20>
-          <mat-icon>event</mat-icon> Clases
-        </a>
-      -->
+      <a routerLink="courses" mat-list-item appFontSize20>
+        <mat-icon>school</mat-icon> Cursos
+      </a>
 
-        <a routerLink="inscriptions" mat-list-item appFontSize20> 
-          <mat-icon>summarize</mat-icon> Inscripciones
-        </a>
+      <a routerLink="inscriptions" mat-list-item appFontSize20>
+        <mat-icon>summarize</mat-icon> Inscripciones
+      </a>
 
-        <!--
-        <mat-list-item *ngFor="let nroSala of doubledNumbers">
-          <a matLine>Sala {{ nroSala }}</a>
-        </mat-list-item>
-      -->
       <a (click)="logout()" mat-list-item>
-        <mat-icon>logout</mat-icon> Cerrar Sesion
+        <mat-icon>logout</mat-icon> Cerrar Sesión
       </a>
-      <!--
-      <a mat-list-item appFontSize20>
-        <mat-icon>event</mat-icon> Clases
-      </a>
-    -->
     </mat-list>
-
-    </mat-drawer>
+  </mat-drawer>
   
-    <div class="example-sidenav-content">
+  <div class="example-sidenav-content">
+    <mat-toolbar color="primary">
+      <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Menú">
+        <mat-icon>menu</mat-icon>
+      </button>
 
-        <mat-toolbar color="primary">
-            <button  (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-              <mat-icon>menu</mat-icon>
-            </button>
+      <span appFontSize20>Administración CH - {{ (routeData$ | async)?.["title"] }}</span>
 
-            <span appFontSize20>Administración CH - {{ (routeData$ | async)?.["title"] }}</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Favoritos">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Compartir">
+        <mat-icon>share</mat-icon>
+      </button>
 
-            <span class="example-spacer"></span>
-            <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-              <mat-icon>share</mat-icon>
-            </button>
-            <!-- ANGULAR 16 queda mas claro, con async en 17 abajo-->
-            <div *ngIf="authUserSinPipe">{{ authUserSinPipe.firstname  }}</div>
-            <!-- ANGULAR 17-->
-            <!-- @if (authUser$ | async; as user) {
-            <div>{{ user?.firstName }}</div>
-            } -->
-          </mat-toolbar>
-          
-          <main style="padding: 1rem;"> 
-            <!--
-            <div>
-              <button (click)="login()" color="primary" mat-flat-button>
-                Iniciar sesion
-              </button>
-              <button (click)="logout()" color="warn" mat-flat-button>
-                Cerrar sesion
-              </button>
-            </div>
-          -->
-            <!--
-            <hr>
-
-            <async-observable-pipe></async-observable-pipe>
-            <hr>
-            -->
-            <!--
-          <app-students></app-students>
-            -->
-            <router-outlet />
-          </main>
-
-    </div>
-  
-  </mat-drawer-container>
+      <!-- Angular 16: más claro, con async en Angular 17 abajo -->
+      <div *ngIf="authUserSinPipe">{{ authUserSinPipe.firstname }}</div>
+      <!-- Angular 17 -->
+      <!-- @if (authUser$ | async; as user) {
+        <div>{{ user?.firstName }}</div>
+      } -->
+    </mat-toolbar>
+    
+    <main style="padding: 1rem;"> 
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</mat-drawer-container>

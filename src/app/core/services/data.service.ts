@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
+// Servicio creado y usado para entregable que pedia experiemntar con promesas.
 @Injectable({
   providedIn: 'root'
 })

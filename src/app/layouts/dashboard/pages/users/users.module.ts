@@ -31,7 +31,6 @@ export const RANDOM_NUMBER = new InjectionToken('RANDOM_NUMBER');
     EffectsModule.forFeature([UserEffects]),
   ],
   providers: [
-    // CoursesService,
     {
       provide: UsersService,
       useClass: UsersService,

@@ -74,7 +74,7 @@ export class StudentDetailComponent implements OnInit, OnDestroy {
   onDeleteInscription(id: number): void {
     if (confirm('¿Está seguro?')) {
       this.store.dispatch(InscriptionActions.deleteInscriptionById({ id }));
-      // Actualizar la lista de inscripciones después de la eliminación
+      // Actualizamos la lista de inscripciones después de la eliminación
       this.inscriptions$ = this.inscriptions$.pipe(
         tap((inscriptions) => {
           this.inscriptions$ = of(inscriptions.filter(inscription => inscription.id !== id));

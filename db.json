@@ -1,42 +1,42 @@
 {
   "users": [
     {
-      "id": "1",
-      "createdAt": "2024-05-02T01:14:53.907Z",
-      "email": "adminmail@mail.com",
       "firstname": "soyadmin",
-      "secondname": "apellido",
+      "secondname": "Paz",
+      "email": "adminmail@mail.com",
       "role": "ADMIN",
+      "address": "18 de Julio 789",
       "phone": "654789321",
-      "address": "18 de Julio 789"
+      "createdAt": "2024-05-02T01:14:53.907Z",
+      "id": "1"
     },
     {
-      "id": "2",
-      "createdAt": "2024-05-02T01:14:53.907Z",
-      "email": "sofia@mail.com",
       "firstname": "Sofía",
-      "secondname": "L",
+      "secondname": "Luciuk",
+      "email": "sofia@mail.com",
       "role": "TEACHER",
+      "address": "Corrientes 1230",
       "phone": "454789399",
-      "address": "Corrientes 1230"
-    },
-    {
-      "id": "3",
       "createdAt": "2024-05-02T01:14:53.907Z",
-      "email": "josue@mail.com",
-      "firstname": "Josué",
-      "secondname": "B",
-      "role": "TEACHER",
-      "phone": "786790901",
-      "address": "Constituyente 789"
+      "id": "2"
     },
     {
-      "firstname": "Rodrigoo",
+      "firstname": "Josué",
+      "secondname": "Baez",
+      "email": "josue@mail.com",
+      "role": "TEACHER",
+      "address": "Constituyente 789",
+      "phone": "786790901",
+      "createdAt": "2024-05-02T01:14:53.907Z",
+      "id": "3"
+    },
+    {
+      "firstname": "Rodrig",
       "secondname": "Gordienko",
       "email": "rodri@mail.com",
       "role": "USER",
-      "address": "Constituyentee 2024",
-      "phone": "123990124",
+      "address": "Constituyentee 2025",
+      "phone": "123990125",
       "createdAt": "2024-05-17T03:21:49.427Z",
       "id": "4"
     }
@@ -73,6 +73,14 @@
       "startDate": "2024-07-17T00:00:00.000Z",
       "hours": 50,
       "classes": 25
+    },
+    {
+      "name": "NestJS",
+      "teacher": "Josué",
+      "startDate": "2024-07-01",
+      "hours": 30,
+      "classes": 15,
+      "id": "5"
     }
   ],
   "students": [
@@ -131,22 +139,13 @@
       "address": "Calle Terciaria 303"
     },
     {
-      "id": "8",
-      "firstname": "Viniciussss",
+      "firstname": "Vinicius",
       "secondname": "Jr",
       "email": "vinicius@gmail.com",
-      "createdAt": "2024-05-02T00:00:00.000Z",
+      "address": "Avenida Terciaria 404",
       "phone": "159753852",
-      "address": "Avenida Terciaria 404"
-    },
-    {
-      "id": "9",
-      "firstname": "rrr",
-      "secondname": "jfjjfjjf",
-      "email": "rodri@mail.com",
-      "address": "12gh j",
-      "phone": "78125383",
-      "createdAt": "2024-05-03T04:18:44.082Z"
+      "createdAt": "2024-05-02T00:00:00.000Z",
+      "id": "8"
     }
   ],
   "inscriptions": [
@@ -198,6 +197,20 @@
       "hour": "2024-05-05T18:16:48.711Z",
       "user": "2",
       "id": "7"
+    },
+    {
+      "id": "8",
+      "course": "5",
+      "student": "8",
+      "user": "2",
+      "hour": "2024-05-17T04:13:21.932Z"
+    },
+    {
+      "id": "9",
+      "course": "3",
+      "student": "6",
+      "user": "2",
+      "hour": "2024-05-17T04:13:28.033Z"
     }
   ]
 }

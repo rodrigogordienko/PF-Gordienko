@@ -67,10 +67,10 @@ export class StudentsComponent implements OnInit {
         next: (result) => {
           if (result) {
             if (editingStudent) {
+              result.createdAt = editingStudent.createdAt;
               this.store.dispatch(StudentActions.updateStudent({ id: editingStudent.id, payload: result }));
             } else {
-              //this.counter++;
-              //result.id = this.counter.toString();
+              result.createdAt = new Date();
               result.id = (maxId + 1).toString();
               this.store.dispatch(StudentActions.createStudent({ payload: result }));
             }

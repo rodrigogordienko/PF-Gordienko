@@ -8,4 +8,3 @@ export class FullNamePipe implements PipeTransform {
     return `${firstname} ${secondname}`;
   }
 }
-

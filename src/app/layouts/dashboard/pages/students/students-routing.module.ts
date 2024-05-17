@@ -5,14 +5,14 @@ import { StudentsComponent } from './students.component';
 
 const routes: Routes = [
   /**
-   * Path actual: /dashboard/users
+   * Path actual: /dashboard/students
    */
   {
     path: '',
     component: StudentsComponent,
   },
   {
-    // /dashboard/users/:id
+    // /dashboard/students/:id
     path: ':id',
     data: {
       title: 'Perfil',

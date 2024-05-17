@@ -1,6 +1,5 @@
 import { InjectionToken, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { StudentsRoutingModule } from './students-routing.module';
 import { StudentsComponent } from './students.component';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
@@ -31,7 +30,6 @@ export const RANDOM_NUMBER = new InjectionToken('RANDOM_NUMBER');
     EffectsModule.forFeature([StudentEffects]),
   ],
   providers: [
-    // CoursesService,
     {
       provide: StudentsService,
       useClass: StudentsService,

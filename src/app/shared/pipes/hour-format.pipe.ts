@@ -11,7 +11,6 @@ export class HourFormatPipe implements PipeTransform {
     const hours = date.getHours();
     const minutes = date.getMinutes();
 
-    // Formatear la hora según el formato especificado (por defecto 'HH:mm')
     const formattedHour = format
       .replace('HH', this.pad(hours))
       .replace('mm', this.pad(minutes));

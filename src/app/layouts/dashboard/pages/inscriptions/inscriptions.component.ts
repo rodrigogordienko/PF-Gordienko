@@ -1,4 +1,3 @@
-// inscriptions.component.ts
 import { Component, ViewChild, OnInit, OnDestroy } from '@angular/core';
 import { IInscription } from './models';
 import { MatTable } from '@angular/material/table';
@@ -62,13 +61,10 @@ export class InscriptionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    
     this.authUserSubscription = this.authUser$.subscribe(user => {
-      this.authUserSinPipe = user;
-      
+      this.authUserSinPipe = user;     
     });
     
-
     this.store.dispatch(InscriptionActions.loadInscriptions());
     this.loadCourses();
     this.loadStudents();
@@ -138,8 +134,6 @@ export class InscriptionsComponent implements OnInit, OnDestroy {
             result.user = editingInscription.user;
             this.store.dispatch(InscriptionActions.updateInscription({ id: editingInscription.id, payload: result }));
           } else {
-            //this.counter++;
-            //result.id = this.counter;
             result.id = (maxId + 1).toString();
             result.user = this.authUserSinPipe?.id.toString();
             console.log('el result user es: ', this.authUserSinPipe?.id )

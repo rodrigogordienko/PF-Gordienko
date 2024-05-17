@@ -35,7 +35,7 @@ export class InscriptionsDialogComponent {
       student: [[Validators.required]],
     });
 
-    // Para editar el usuario si es que me lo amndan
+    // Para editar la inscripcion si es que me la mandan
     if (editingInscription) {
       this.classForm.patchValue(editingInscription);
     }
@@ -75,7 +75,6 @@ export class InscriptionsDialogComponent {
     return this.classForm.get('teacher');
   }
 
-
   onSave(): void {
     if (this.classForm.invalid) {
       this.classForm.markAllAsTouched();
@@ -86,6 +85,4 @@ export class InscriptionsDialogComponent {
       // En nuestro caso, en el OpenDialog() del componente  Student
     } 
   }
-  
-
 }

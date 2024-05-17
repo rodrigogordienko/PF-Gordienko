@@ -4,7 +4,6 @@ import { catchError, delay, first, map, Observable, of, throwError } from 'rxjs'
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment.development';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -12,11 +11,11 @@ export class InscriptionsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  
   getInscriptions(): Observable<IInscription[]> {
     return this.httpClient.get<IInscription[]>(environment.baseAPIURL + '/inscriptions');
   }
-  /* No pude => revierto
+
+  /* No pude => revierto, hice muchos cambios para probarlos pero se rompia todo.
   getInscriptions(): Observable<IInscription[]> {
     return this.httpClient.get<IInscription[]>(environment.baseAPIURL + '/inscriptions?_embed=course,student,user');
   }
@@ -34,7 +33,6 @@ export class InscriptionsService {
   }
 
   deleteInscriptionById(id: number): Observable<IInscription> {
-    console.log("en servicio de inscripciones, id de la inscripcion a borrar: ", id);
     return this.httpClient.delete<IInscription>(`${environment.baseAPIURL}/inscriptions/${id}`);
   }
 
@@ -46,31 +44,24 @@ export class InscriptionsService {
   }
 
   getInscriptionsByStudentId(studentId: number): Observable<IInscription[]> {
-    console.log("en servicio de inscripciones, id del estudiante: ", studentId);
     return this.getInscriptions().pipe(
       map((inscripciones: IInscription[]) => {
         return inscripciones.filter(inscripcion => inscripcion.student === studentId);
       }),
       catchError(error => {
-        // Manejar errores de la petición HTTP aquí si es necesario
         return throwError(error);
       })
     );
   }
 
   getInscriptionsByCourseId(courseId: number): Observable<IInscription[]> {
-    console.log("en servicio de inscripciones, id del curso: ", courseId);
-    //console.log(courseId);
     return this.getInscriptions().pipe(
       map((inscripciones: IInscription[]) => {
         return inscripciones.filter(inscription => inscription.course === courseId);
       }),
       catchError(error => {
-        // Manejar errores de la petición HTTP aquí si es necesario
         return throwError(error);
       })
     );
   }
-  
-
 }

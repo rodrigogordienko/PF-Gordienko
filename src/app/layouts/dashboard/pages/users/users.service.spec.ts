@@ -32,24 +32,40 @@ describe('UsersService', () => {
         createdAt: new Date("2024-05-02T01:14:53.907Z"),
         email: "adminmail@mail.com",
         firstname: "soyadmin",
-        secondname: "apellido",
-        role: "ADMIN"
+        secondname: "Paz",
+        role: "ADMIN",
+        phone: 654789321,
+        address: "18 de Julio 789",
       },
       {
         id: 2,
         createdAt: new Date("2024-05-02T01:14:53.907Z"),
         email: "sofia@mail.com",
         firstname: "Sofía",
-        secondname: "L",
-        role: "TEACHER"
+        secondname: "Luciuk",
+        role: "TEACHER",
+        phone: 454789399,
+        address: "Corrientes 1230",
       },
       {
         id: 3,
         createdAt: new Date("2024-05-02T01:14:53.907Z"),
         email: "josue@mail.com",
         firstname: "Josué",
-        secondname: "B",
-        role: "TEACHER"
+        secondname: "Baez",
+        role: "TEACHER",
+        phone: 786790901,
+        address: "Constituyente 789",
+      },
+      {
+        id: 4,
+        createdAt: new Date("2024-05-17T03:21:49.427Z"),
+        email: "rodri@mail.com",
+        firstname: "Rodrig",
+        secondname: "Gordienko",
+        role: "USER",
+        phone: 123990125,
+        address: "Constituyentee 2025",
       }
     ];
 

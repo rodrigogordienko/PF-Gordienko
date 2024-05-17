@@ -1,4 +1,3 @@
-// inscriptions.reducer.ts
 import { createFeature, createReducer, on } from '@ngrx/store';
 import { InscriptionActions } from './inscription.actions';
 import { IInscription } from '../models';

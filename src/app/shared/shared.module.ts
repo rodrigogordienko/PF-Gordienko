@@ -12,12 +12,6 @@ import { FormFieldValidationErrorsPipe } from './pipes/form-field-validation-err
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
-
-
-/*
-import { ResaltadoDirective } from './directives/resaltado.directive';
-import { RepetirDirective } from './directives/repetir.directive';
-*/
 import { MatListModule } from '@angular/material/list';
 import { FullNamePipe } from './pipes/full-name.pipe';
 import { FontSize20Directive } from './directives/font-size20.directive';
@@ -34,12 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
     HourFormatPipe,
 
   ],
-  /*
-    FormFieldValidationErrorsPipe,
-    ResaltadoDirective,
-    RepetirDirective,
-  ], 
-  */
   imports: [CommonModule],
   exports: [
     MatTableModule,
@@ -60,10 +48,6 @@ import { HttpClientModule } from '@angular/common/http';
     MatDatepickerModule,
     MatCardModule,
     HttpClientModule,
-    /*
-    ResaltadoDirective,
-    RepetirDirective,
-    */
   ],
 })
 export class SharedModule {}

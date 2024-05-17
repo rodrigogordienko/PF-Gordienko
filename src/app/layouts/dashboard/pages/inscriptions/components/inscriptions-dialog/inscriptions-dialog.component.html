@@ -15,14 +15,6 @@
           <mat-label>Curso</mat-label>
           <mat-select formControlName="course">
             <mat-option *ngFor="let course of courses" [value]="course.id">{{ course.name }}</mat-option>
-            <!--
-            <mat-option value="Angular">Angular</mat-option>
-            <mat-option value="Base de Datos">Base de Datos</mat-option>
-            <mat-option value="Java">Java</mat-option>
-            <mat-option value="Python">Python</mat-option>
-            <mat-option value="React Js">React Js</mat-option>
-            -->
-
           </mat-select>
         </mat-form-field>
       </div>

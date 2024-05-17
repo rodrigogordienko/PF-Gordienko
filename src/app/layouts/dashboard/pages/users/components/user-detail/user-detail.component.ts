@@ -24,7 +24,7 @@ export class UserDetailComponent {
     private router: Router,
     private usersService: UsersService,
     private coursesService: CoursesService,
-    private inscriptionsService: InscriptionsService
+    private inscriptionsService: InscriptionsService,
   ) {
     this.loading = true;
     this.user$ = this.usersService
@@ -44,7 +44,6 @@ export class UserDetailComponent {
     });
   }
   
-
   ngOnInit(): void {
     this.loadUsers();
   }
@@ -53,6 +52,4 @@ export class UserDetailComponent {
     const user = this.users.find(user => user.id === userId);
     return user ? user.firstname : 'Usuario Desconocido';
   }
-
-
 }

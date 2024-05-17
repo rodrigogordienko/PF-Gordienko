@@ -4,20 +4,18 @@ import { CoursesComponent } from './courses.component';
 import { CourseDetailComponent } from './components/course-detail/course-detail.component';
 
 const routes: Routes = [
-
   {
     path: '',
     component: CoursesComponent,
   },
   {
-    // /dashboard/users/:id
+    // /dashboard/courses/:id
     path: ':id',
     data: {
       title: 'Detalles del Curso',
     },
     component: CourseDetailComponent,
   }
-  
 ];
 
 @NgModule({

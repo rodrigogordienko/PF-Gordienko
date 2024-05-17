@@ -101,7 +101,7 @@ describe('StudentsService', () => {
     }
     ];
 
-    service.getUsers().subscribe(students => {
+    service.getStudents().subscribe(students => {
       expect(students).toEqual(mockStudents);
     });
 
@@ -152,7 +152,7 @@ describe('StudentsService', () => {
       address: "New Street"
     };
 
-    service.createUser(mockStudent).subscribe(student => {
+    service.createStudent(mockStudent).subscribe(student => {
       console.log(student);
       expect(student.firstname).toEqual(mockIStudent.firstname);
       expect(student.secondname).toEqual(mockIStudent.secondname);
@@ -170,7 +170,7 @@ describe('StudentsService', () => {
   it('Se elimina un estudiante mediante el metodo DELETE', () => {
     const studentId = 1;
 
-    service.deleteStudent(studentId).subscribe(() => {
+    service.deleteStudentById(studentId).subscribe(() => {
       expect().nothing();
     });
 

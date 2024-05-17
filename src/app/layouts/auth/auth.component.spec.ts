@@ -7,12 +7,15 @@ import { of } from 'rxjs';
 import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from '../../shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
+import { authActions } from '../../store/auth/auth.actions';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
   let fixture: ComponentFixture<AuthComponent>;
   let authService: jasmine.SpyObj<AuthService>;
   let router: jasmine.SpyObj<Router>;
+  let store: MockStore;
 
   beforeEach(async () => {
     authService = jasmine.createSpyObj('AuthService', ['login']);
@@ -20,17 +23,20 @@ describe('AuthComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [AuthComponent],
-      imports: [ReactiveFormsModule,
+      imports: [
+        ReactiveFormsModule,
         SharedModule,
         MatCardModule,
         BrowserAnimationsModule
       ],
       providers: [
         { provide: AuthService, useValue: authService },
-        { provide: Router, useValue: router }
+        { provide: Router, useValue: router },
+        provideMockStore()
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
+
+    store = TestBed.inject(MockStore);
   });
 
   beforeEach(() => {
@@ -43,21 +49,25 @@ describe('AuthComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Llamamos a AuthService.login() luego de que el formulario sea valido', () => {
+  it('Llamamos a authActions.login luego de que el formulario sea valido', () => {
     const formData = { email: 'admin@mail.com', password: 'admin' };
     component.loginForm.setValue(formData);
 
+    spyOn(store, 'dispatch');
+
     component.login();
 
-    expect(authService.login).toHaveBeenCalledWith(formData);
+    expect(store.dispatch).toHaveBeenCalledWith(authActions.login({ payload: formData }));
   });
 
-  it('Formulario invalido => No deberia llamarse a AuthService.login() ', () => {
+  it('Formulario invalido => No deberia llamarse a authActions.login', () => {
     const formData = { email: '', password: '' };
     component.loginForm.setValue(formData);
 
+    spyOn(store, 'dispatch');
+
     component.login();
 
-    expect(authService.login).not.toHaveBeenCalled();
+    expect(store.dispatch).not.toHaveBeenCalled();
   });
 });

@@ -12,7 +12,6 @@ const mockCourses : ICourse[] = [
   { id: 4, teacher: "Sofía", name: "Java", startDate: new Date("2024-07-17T00:00:00.000Z"), hours: 50, classes: 25 }
 ];
 
-
 describe('CoursesService', () => {
   let service: CoursesService;
   let httpMock: HttpTestingController;

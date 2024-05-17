@@ -7,6 +7,7 @@ import { IUser } from './pages/users/models';
 import { Store } from '@ngrx/store';
 import { authActions } from '../../store/auth/auth.actions';
 import { ActivatedRoute, Data, NavigationEnd, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,23 +18,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
   showFiller = false;
 
   authUser$: Observable<IUser | null>;
-
   authUserSinPipe: IUser | null = null;
   authUserSubscription?: Subscription;
 
   courses: string[];          // Para promise
   doubledNumbers: number[];   // Observable para map filter
-
+  
   routeData$: Observable<Data | undefined>;
 
   constructor(private authService: AuthService, private dataService: DataService, private router: Router,
-    private store: Store,  private route: ActivatedRoute,
+    private store: Store,  private route: ActivatedRoute, private titleService: Title,
   ) {
 
     this.authUser$ = this.authService.authUser$;  //damos valor inicial null
     this.courses = [];
     this.doubledNumbers = []
-
+    
     this.routeData$ = router.events.pipe(
       filter((ev) => ev instanceof NavigationEnd),
       map(() => route.firstChild?.snapshot.data)
@@ -51,7 +51,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
       },
     });
 
-    /* Para entregable, luego no fu necesario usarlo:
+    this.routeData$.subscribe(data => {
+      if (data && data['title']) {
+        this.titleService.setTitle(`Administración CH - ${data['title']}`);
+      }
+    });
+
+    /* Para entregable, luego no fue necesario usarlo:
 
     // Para usar promesa asincrona de 1 segundo
     this.dataService.getCourses()
@@ -72,11 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       });
       */
   }
-  /*
-  login(): void {
-    this.authService.login();
-  }
-  */
+
 
   logout(): void {
     //this.authService.logout();

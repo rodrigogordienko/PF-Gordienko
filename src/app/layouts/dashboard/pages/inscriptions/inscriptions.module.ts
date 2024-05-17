@@ -15,7 +15,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 export const INSCRIPTIONS = new InjectionToken('INSCRIPTIONS');
 export const RANDOM_NUMBER = new InjectionToken('RANDOM_NUMBER');
 
-
 @NgModule({
   declarations: [
     InscriptionsComponent,
@@ -30,7 +29,6 @@ export const RANDOM_NUMBER = new InjectionToken('RANDOM_NUMBER');
     EffectsModule.forFeature([InscriptionEffects]),
   ],
   providers: [
-    // CoursesService,
     {
       provide: InscriptionsService,
       useClass: InscriptionsService,

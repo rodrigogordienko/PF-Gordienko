@@ -1,4 +1,3 @@
-// inscriptions.selectors.ts
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromInscription from './inscription.reducer';
 

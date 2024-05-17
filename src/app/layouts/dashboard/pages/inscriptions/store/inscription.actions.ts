@@ -1,4 +1,3 @@
-// inscriptions.actions.ts
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { CreateInscriptionPayload, IInscription } from '../models';
 import { HttpErrorResponse } from '@angular/common/http';

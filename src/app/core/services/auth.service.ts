@@ -77,10 +77,11 @@ export class AuthService {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('auth');
   }
+
   /*
   private _authUser$ = new BehaviorSubject<IStudent | null>(null);
   public authUser$ = this._authUser$.asObservable();
-
+  
   login(): void {
     this._authUser$.next({
       id: 1,
