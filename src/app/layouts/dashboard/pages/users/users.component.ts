@@ -30,6 +30,8 @@ export class UsersComponent implements OnInit {
     'fullname',
     'email',
     'role',
+    'phone',
+    'address',
     'createdAt',
     'actions',
   ];

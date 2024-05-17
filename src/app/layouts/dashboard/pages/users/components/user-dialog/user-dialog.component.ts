@@ -9,7 +9,7 @@ import { IUser, UserRole } from '../../models';
   styleUrls: ['./user-dialog.component.scss']
 })
 export class UserDialogComponent implements OnInit {
-  roles: UserRole[] = ['ADMIN', 'TEACHER'];
+  roles: UserRole[] = ['ADMIN', 'TEACHER', 'USER'];
   userForm!: FormGroup;
 
   constructor(
@@ -45,7 +45,21 @@ export class UserDialogComponent implements OnInit {
           Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}'),
         ],
       ],
-      role: ['TEACHER', [Validators.required]],
+      role: ['USER', [Validators.required]],
+      address: [
+        this.editingUser ? this.editingUser.address : '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+        ],
+      ],
+      phone: [
+        this.editingUser ? this.editingUser.phone : '',
+        [
+          Validators.required,
+          Validators.pattern('[0-9]{7,10}'),
+        ],
+      ],
     });
   }
 

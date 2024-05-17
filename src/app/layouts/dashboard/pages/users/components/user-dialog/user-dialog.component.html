@@ -31,7 +31,6 @@
           }}</mat-error>
         </mat-form-field>
       </div>
-      
       <div class="col-12">
         <mat-form-field class="w-100 p-2" appearance="fill">
           <mat-label>Rol</mat-label>
@@ -45,7 +44,27 @@
           }}</mat-error>
         </mat-form-field>
       </div>
+      <div class="row">
+      <div class="col-6">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Dirección</mat-label>
+          <input formControlName="address" matInput />
+          <mat-error>{{
+            userForm.get("address")?.errors | formFieldValidationErrors
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field class="w-100 p-2" appearance="fill">
+          <mat-label>Teléfono</mat-label>
+          <input formControlName="phone" matInput />
+          <mat-error>{{
+            userForm.get("phone")?.errors | formFieldValidationErrors
+          }}</mat-error>
+        </mat-form-field>
+      </div>
     </div>
+  </div>
   </form>
 </div>
 

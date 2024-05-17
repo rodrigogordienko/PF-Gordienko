@@ -1,4 +1,4 @@
-export type UserRole = 'ADMIN' | 'TEACHER';
+export type UserRole = 'ADMIN' | 'TEACHER' | 'USER';
 
 export interface IUser {
     id: number;
@@ -7,6 +7,8 @@ export interface IUser {
     email: string;
     role: UserRole;
     createdAt: Date;
+    phone: number;
+    address: string;
 }
 
 export interface CreateUserPayload {
@@ -15,4 +17,6 @@ export interface CreateUserPayload {
     email: string | null;
     role: UserRole | null;
     createdAt: Date | null;
+    phone: number;
+    address: string;
   }

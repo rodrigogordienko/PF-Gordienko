@@ -14,6 +14,8 @@ import {
 } from './store/student.selectors';
 import { map, Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import { IUser } from '../users/models';
+import { authUser } from '../../../../store/auth/auth.selectors';
 
 @Component({
   selector: 'app-students',
@@ -26,6 +28,9 @@ export class StudentsComponent implements OnInit {
   students$: Observable<IStudent[]>;
   isLoading$: Observable<boolean>;
   error$: Observable<Error>;
+
+  authUser$: Observable<IUser | null>;
+
   displayedColumns: string[] = [
     'id',
     'fullname',
@@ -43,6 +48,7 @@ export class StudentsComponent implements OnInit {
       .select(selectStudentsError)
       .pipe(map((err) => err as Error));
     this.counter = 1000;
+    this.authUser$ = this.store.select(authUser);
   }
 
   ngOnInit(): void {

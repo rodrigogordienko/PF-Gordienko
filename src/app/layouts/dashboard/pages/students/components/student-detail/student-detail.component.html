@@ -1,61 +1,71 @@
 <div *ngIf="user$ | async as user" id="container" [ngClass]="!loading ? 'd-block' : 'd-none'">
+  <div class="profile-header">
+    <img id="profile-pic" src="assets/anonimo.jpg" alt="Foto de Perfil">
+    <div id="name">{{ user.firstname }} {{ user.secondname }}</div>
+  </div>
 
-    <div class="profile-header">
-      <img id="profile-pic" src="assets/anonimo.jpg" alt="Foto de Perfil">
-      <div id="name">{{ user.firstname }} {{ user.secondname }}</div>
-    </div>
-  
-    <div class="profile-details">
-      <table>
-        <tr>
-          <th>ID:</th>
-          <td>{{ user.id }}</td>
-        </tr>
-        <tr>
-          <th>Nombre:</th>
-          <td>{{ user.firstname }}</td>
-        </tr>
-        <tr>
-          <th>Apellido:</th>
-          <td>{{ user.secondname }}</td>
-        </tr>
-        <tr>
-          <th>Email:</th>
-          <td>{{ user.email }}</td>
-        </tr>
-        <tr>
-          <th>Fecha de Inscripción:</th>
-          <td>{{ user.createdAt | date:'mediumDate' }}</td>
-        </tr>
-        <!-- Nueva fila para mostrar la dirección -->
-        <tr>
-          <th>Dirección:</th>
-          <td>{{ user.address }}</td>
-        </tr>
-        <!-- Nueva fila para mostrar el teléfono -->
-        <tr>
-          <th>Teléfono:</th>
-          <td>{{ user.phone }}</td>
-        </tr>
-        <tr>
-          <th>Cursos:</th>
-          <td>
-            <ul>
-              <!-- Utilizamos un conjunto para almacenar los cursos y evitar duplicados -->
-              <ng-container *ngIf="inscriptions && inscriptions.length > 0">
-                <!-- Iteramos sobre los cursos del usuario -->
-                <li *ngFor="let course of inscriptions">
-                  {{ getCourseName(course.course) }}
-                </li>
-              </ng-container>
-              <!-- Si el usuario no tiene cursos, mostramos un mensaje -->
-              <ng-container *ngIf="!inscriptions || inscriptions.length === 0">
-                <li>No hay cursos registrados.</li>
-              </ng-container>
-            </ul>
-          </td>
-        </tr>
-      </table>
+  <div class="profile-details">
+    <table>
+      <tr>
+        <th>ID:</th>
+        <td>{{ user.id }}</td>
+      </tr>
+      <tr>
+        <th>Nombre:</th>
+        <td>{{ user.firstname }}</td>
+      </tr>
+      <tr>
+        <th>Apellido:</th>
+        <td>{{ user.secondname }}</td>
+      </tr>
+      <tr>
+        <th>Email:</th>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <th>Fecha de Registro:</th>
+        <td>{{ user.createdAt | date:'mediumDate' }}</td>
+      </tr>
+      <tr>
+        <th>Dirección:</th>
+        <td>{{ user.address }}</td>
+      </tr>
+      <tr>
+        <th>Teléfono:</th>
+        <td>{{ user.phone }}</td>
+      </tr>
+    </table>
+
+    <h3 class="course-title">Cursos Inscritos</h3>
+    <table mat-table [dataSource]="(inscriptions$| async) || []" class="mat-elevation-z8">
+
+      <!-- Columnas de la tabla -->
+      <ng-container matColumnDef="courseName">
+        <th mat-header-cell *matHeaderCellDef> Curso </th>
+        <td mat-cell *matCellDef="let element"> {{ getCourseName(element.course) }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Inscripción </th>
+        <td mat-cell *matCellDef="let element"> {{ element.hour | date:'dd/MM/yyyy' }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="warn" (click)="onDeleteInscription(element.id)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Encabezados y filas -->
+      <tr mat-header-row *matHeaderRowDef="['courseName', 'date', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['courseName', 'date', 'actions']"></tr>
+    </table>
+
+    <div *ngIf="(inscriptions$ | async)?.length === 0">
+      <p>No hay cursos inscritos.</p>
     </div>
   </div>
-  
+</div>

@@ -16,6 +16,8 @@ import {
 } from './store/course.selectors';
 import { map, Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import { IUser } from '../users/models';
+import { authUser } from '../../../../store/auth/auth.selectors';
 
 
 @Component({
@@ -41,6 +43,7 @@ export class CoursesComponent {
     'startDate',
     'actions',
   ];
+  authUser$: Observable<IUser | null>;
 
   constructor(private matDialog : MatDialog, private courseService: CoursesService, private store: Store){
     this.isLoading$ = this.store.select(selectIsLoading);
@@ -55,7 +58,7 @@ export class CoursesComponent {
       */
       //this.counter = this.maxId$ ;
       this.counter = 1000;
-
+      this.authUser$ = this.store.select(authUser);
   }
 
   ngOnInit(): void {

@@ -1,5 +1,4 @@
 <div *ngIf="course$ | async as course" id="container" [ngClass]="!loading ? 'd-block' : 'd-none'">
-
   <div class="profile-details">
     <table>
       <tr>
@@ -7,7 +6,7 @@
         <td>{{ course?.id }}</td>
       </tr>
       <tr>
-        <th>Profesor asignado</th>
+        <th>Profesor asignado:</th>
         <td>{{ course?.teacher }}</td>
       </tr>
       <tr>
@@ -22,22 +21,35 @@
         <th>Cantidad de Clases:</th>
         <td>{{ course?.classes }}</td>
       </tr>
-      <tr>
-        <th>Alumnos Inscritos:</th>
-        <td>
-          <ul>
-            <ng-container *ngIf="inscriptions && inscriptions.length > 0">
-              <li *ngFor="let inscription of inscriptions">
-                {{ getStudentName(inscription.student) }} {{ getStudentSecondName(inscription.student) }}
-              </li>
-            </ng-container>
-            <ng-container *ngIf="!inscriptions || inscriptions.length === 0">
-              <li>No hay alumnos inscritos en este curso.</li>
-            </ng-container>
-          </ul>
-        </td>
-      </tr>
     </table>
+
+    <h3 class="course-title">Alumnos Inscritos</h3>
+    <table mat-table [dataSource]="(inscriptions$| async) || []" class="mat-elevation-z8">
+      <ng-container matColumnDef="studentName">
+        <th mat-header-cell *matHeaderCellDef> Alumno </th>
+        <td mat-cell *matCellDef="let element"> {{ getStudentName(element.student) }} {{ getStudentSecondName(element.student) }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Inscripción </th>
+        <td mat-cell *matCellDef="let element"> {{ element.hour | date:'dd/MM/yyyy' }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="warn" (click)="onDeleteInscription(element.id)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['studentName', 'date', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['studentName','date', 'actions']"></tr>
+    </table>
+
+    <div *ngIf="(inscriptions$ | async)?.length === 0">
+      <p>No hay alumnos inscritos.</p>
+    </div>
   </div>
 </div>
-

@@ -19,7 +19,6 @@ const routes: Routes = [
     data: {
       title: 'Estudiantes',
     },
-    canActivate: [adminGuard],
     loadChildren: () =>
       import('./pages/students/students.module').then((m) => m.StudentsModule), 
   },
@@ -44,6 +43,7 @@ const routes: Routes = [
     data: {
       title: 'Usuarios',
     },
+    canActivate: [adminGuard],
     loadChildren: () =>
       import('./pages/users/users.module').then((m) => m.UsersModule),
   },

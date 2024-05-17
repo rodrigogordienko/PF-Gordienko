@@ -34,6 +34,7 @@ export class InscriptionsService {
   }
 
   deleteInscriptionById(id: number): Observable<IInscription> {
+    console.log("en servicio de inscripciones, id de la inscripcion a borrar: ", id);
     return this.httpClient.delete<IInscription>(`${environment.baseAPIURL}/inscriptions/${id}`);
   }
 
@@ -45,6 +46,7 @@ export class InscriptionsService {
   }
 
   getInscriptionsByStudentId(studentId: number): Observable<IInscription[]> {
+    console.log("en servicio de inscripciones, id del estudiante: ", studentId);
     return this.getInscriptions().pipe(
       map((inscripciones: IInscription[]) => {
         return inscripciones.filter(inscripcion => inscripcion.student === studentId);
@@ -57,8 +59,8 @@ export class InscriptionsService {
   }
 
   getInscriptionsByCourseId(courseId: number): Observable<IInscription[]> {
-    console.log("en servicio");
-    console.log(courseId);
+    console.log("en servicio de inscripciones, id del curso: ", courseId);
+    //console.log(courseId);
     return this.getInscriptions().pipe(
       map((inscripciones: IInscription[]) => {
         return inscripciones.filter(inscription => inscription.course === courseId);

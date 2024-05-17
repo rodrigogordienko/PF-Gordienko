@@ -56,7 +56,7 @@ export class InscriptionEffects {
     return this.actions$.pipe(
       ofType(InscriptionActions.deleteInscriptionById),
       concatMap(action =>
-        this.inscriptionsService.deleteInscriptionById(+action.id).pipe(
+        this.inscriptionsService.deleteInscriptionById(action.id).pipe(
           map(data => InscriptionActions.deleteInscriptionByIdSuccess({ data })),
           catchError(error =>
             of(InscriptionActions.deleteInscriptionByIdFailure({ error }))

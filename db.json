@@ -6,7 +6,9 @@
       "email": "adminmail@mail.com",
       "firstname": "soyadmin",
       "secondname": "apellido",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "phone": "654789321",
+      "address": "18 de Julio 789"
     },
     {
       "id": "2",
@@ -14,7 +16,9 @@
       "email": "sofia@mail.com",
       "firstname": "Sofía",
       "secondname": "L",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "phone": "454789399",
+      "address": "Corrientes 1230"
     },
     {
       "id": "3",
@@ -22,7 +26,19 @@
       "email": "josue@mail.com",
       "firstname": "Josué",
       "secondname": "B",
-      "role": "TEACHER"
+      "role": "TEACHER",
+      "phone": "786790901",
+      "address": "Constituyente 789"
+    },
+    {
+      "firstname": "Rodrigoo",
+      "secondname": "Gordienko",
+      "email": "rodri@mail.com",
+      "role": "USER",
+      "address": "Constituyentee 2024",
+      "phone": "123990124",
+      "createdAt": "2024-05-17T03:21:49.427Z",
+      "id": "4"
     }
   ],
   "courses": [

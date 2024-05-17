@@ -4,6 +4,8 @@ import { IStudent } from '../../layouts/dashboard/pages/students/models';
 import { IUser } from '../../layouts/dashboard/pages/users/models';
 import { Router } from '@angular/router';
 import { LoginData } from '../../layouts/auth/models';
+import { localStorageSync } from 'ngrx-store-localstorage';
+import { localStorageSyncReducer } from '../../store';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -15,6 +17,8 @@ export class AuthService {
     firstname: 'soyadmin',
     secondname: 'apellido',
     role: 'ADMIN',
+    phone: 123421421,
+    address: "Plaza Principal 421"
   };
 
   private MOCK_AUTH_USER_TEACHER: IUser = {
@@ -24,6 +28,8 @@ export class AuthService {
       firstname: 'Sofía',
       secondname: 'L',
       role: 'TEACHER',
+      phone: 123123123,
+      address: "Plaza Principal 123"
   };
 
   private _authUser$ = new BehaviorSubject<IUser | null>(null);
@@ -40,7 +46,7 @@ export class AuthService {
         'fdskfdsjkmngfunudsijfdsioufjsdoifdsyhfda'
       );
       this.router.navigate(['dashboard', 'home']);
-    } else if (data.email === 'teacher@mail.com' || data.password === 'teacher'){
+    } else if (data.email === 'teacher@mail.com' && data.password === 'teacher'){
       //alert('Correo o password incorrectos');
       this._authUser$.next(this.MOCK_AUTH_USER_TEACHER);
       localStorage.setItem(
@@ -69,6 +75,7 @@ export class AuthService {
   logout(): void {
     this._authUser$.next(null);
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('auth');
   }
   /*
   private _authUser$ = new BehaviorSubject<IStudent | null>(null);

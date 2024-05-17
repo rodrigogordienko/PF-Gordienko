@@ -23,6 +23,8 @@ const MOCK_AUTH_USER_ADMIN: IUser = {
     firstname: 'soyadmin',
     secondname: 'apellido',
     role: 'ADMIN',
+    phone: 654789321,
+    address: "Plaza Principal 789"
   };
 
 const MOCK_AUTH_USER_TEACHER: IUser = {
@@ -32,6 +34,8 @@ const MOCK_AUTH_USER_TEACHER: IUser = {
       firstname: 'Sofía',
       secondname: 'L',
       role: 'TEACHER',
+      phone: 123123123,
+      address: "Plaza Principal 123"
   };
 
 export const authFeatureName = 'auth';

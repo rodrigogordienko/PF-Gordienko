@@ -24,6 +24,22 @@
           <td>{{ user.email }}</td>
         </tr>
         <tr>
+          <th>Rol:</th>
+          <td>{{ user.role }}</td>
+        </tr>
+        <tr>
+          <th>Fecha de Registro:</th>
+          <td>{{ user.createdAt | date:'mediumDate' }}</td>
+        </tr>
+        <tr>
+          <th>Dirección:</th>
+          <td>{{ user.address }}</td>
+        </tr>
+        <tr>
+          <th>Teléfono:</th>
+          <td>{{ user.phone }}</td>
+        </tr>
+        <tr>
       </table>
     </div>
   </div>

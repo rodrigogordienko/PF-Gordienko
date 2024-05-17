@@ -8,12 +8,11 @@
         <mat-icon>home</mat-icon> Inicio
       </a>
       
-      <a routerLink="users" mat-list-item appFontSize20>
+      <a  *ngIf="(authUser$ | async)?.role === 'ADMIN'" routerLink="users" mat-list-item appFontSize20>
         <mat-icon>groups</mat-icon> Usuarios
       </a>
 
       <a a
-      *ngIf="(authUser$ | async)?.role === 'ADMIN'"
       routerLink="students"
       mat-list-item
        appFontSize20>

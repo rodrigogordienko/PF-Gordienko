@@ -18,7 +18,7 @@
 
 <ng-container>
 
-<div class="d-flex justify-content-end mb-3">
+<div class="d-flex justify-content-end mb-3" *ngIf="(authUser$ | async)?.role === 'ADMIN'">
   <button (click)="openDialog()" mat-button color="primary" appFontSize20>
     Registrar Estudiante
   </button>
@@ -101,12 +101,12 @@
         <mat-icon>visibility</mat-icon>
       </button>
       
-      <button (click)="openDialog(element)" mat-icon-button color="primary">
+      <button (click)="openDialog(element)" mat-icon-button color="primary" *ngIf="(authUser$ | async)?.role === 'ADMIN'">
         <mat-icon>edit</mat-icon>
       </button>
 
       <!-- *ngIf="userRoleSession === 'ADMIN'" -->
-      <button (click)="deleteStudentById(element.id)" mat-icon-button color="warn">
+      <button (click)="deleteStudentById(element.id)" mat-icon-button color="warn" *ngIf="(authUser$ | async)?.role === 'ADMIN'">
         <mat-icon>delete_forever</mat-icon>
       </button>
     </td>
